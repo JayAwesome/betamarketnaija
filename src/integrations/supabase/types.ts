@@ -14,7 +14,111 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      favorite_markets: {
+        Row: {
+          city: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          city: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          city?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      produce: {
+        Row: {
+          created_at: string
+          crop: string
+          id: string
+          quantity: number
+          unit: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          crop: string
+          id?: string
+          quantity: number
+          unit?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          crop?: string
+          id?: string
+          quantity?: number
+          unit?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          city: string
+          created_at: string
+          name: string
+          primary_crop: string
+          user_id: string
+        }
+        Insert: {
+          city?: string
+          created_at?: string
+          name?: string
+          primary_crop?: string
+          user_id: string
+        }
+        Update: {
+          city?: string
+          created_at?: string
+          name?: string
+          primary_crop?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      sales_history: {
+        Row: {
+          city_sold: string
+          created_at: string
+          crop: string
+          date: string
+          id: string
+          price: number
+          quantity: number
+          user_id: string
+        }
+        Insert: {
+          city_sold: string
+          created_at?: string
+          crop: string
+          date?: string
+          id?: string
+          price: number
+          quantity?: number
+          user_id: string
+        }
+        Update: {
+          city_sold?: string
+          created_at?: string
+          crop?: string
+          date?: string
+          id?: string
+          price?: number
+          quantity?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
