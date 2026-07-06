@@ -9,15 +9,27 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UssdRouteImport } from './routes/ussd'
 import { Route as MyDashboardRouteImport } from './routes/my-dashboard'
+import { Route as MyCooperativeRouteImport } from './routes/my-cooperative'
 import { Route as ChatRouteImport } from './routes/chat'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as IndexRouteImport } from './routes/index'
 
+const UssdRoute = UssdRouteImport.update({
+  id: '/ussd',
+  path: '/ussd',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MyDashboardRoute = MyDashboardRouteImport.update({
   id: '/my-dashboard',
   path: '/my-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyCooperativeRoute = MyCooperativeRouteImport.update({
+  id: '/my-cooperative',
+  path: '/my-cooperative',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChatRoute = ChatRouteImport.update({
@@ -46,14 +58,18 @@ export interface FileRoutesByFullPath {
   '/analytics': typeof AnalyticsRoute
   '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
+  '/my-cooperative': typeof MyCooperativeRoute
   '/my-dashboard': typeof MyDashboardRoute
+  '/ussd': typeof UssdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analytics': typeof AnalyticsRoute
   '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
+  '/my-cooperative': typeof MyCooperativeRoute
   '/my-dashboard': typeof MyDashboardRoute
+  '/ussd': typeof UssdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -61,14 +77,38 @@ export interface FileRoutesById {
   '/analytics': typeof AnalyticsRoute
   '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
+  '/my-cooperative': typeof MyCooperativeRoute
   '/my-dashboard': typeof MyDashboardRoute
+  '/ussd': typeof UssdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/analytics' | '/auth' | '/chat' | '/my-dashboard'
+  fullPaths:
+    | '/'
+    | '/analytics'
+    | '/auth'
+    | '/chat'
+    | '/my-cooperative'
+    | '/my-dashboard'
+    | '/ussd'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/analytics' | '/auth' | '/chat' | '/my-dashboard'
-  id: '__root__' | '/' | '/analytics' | '/auth' | '/chat' | '/my-dashboard'
+  to:
+    | '/'
+    | '/analytics'
+    | '/auth'
+    | '/chat'
+    | '/my-cooperative'
+    | '/my-dashboard'
+    | '/ussd'
+  id:
+    | '__root__'
+    | '/'
+    | '/analytics'
+    | '/auth'
+    | '/chat'
+    | '/my-cooperative'
+    | '/my-dashboard'
+    | '/ussd'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,16 +116,32 @@ export interface RootRouteChildren {
   AnalyticsRoute: typeof AnalyticsRoute
   AuthRoute: typeof AuthRoute
   ChatRoute: typeof ChatRoute
+  MyCooperativeRoute: typeof MyCooperativeRoute
   MyDashboardRoute: typeof MyDashboardRoute
+  UssdRoute: typeof UssdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/ussd': {
+      id: '/ussd'
+      path: '/ussd'
+      fullPath: '/ussd'
+      preLoaderRoute: typeof UssdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/my-dashboard': {
       id: '/my-dashboard'
       path: '/my-dashboard'
       fullPath: '/my-dashboard'
       preLoaderRoute: typeof MyDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-cooperative': {
+      id: '/my-cooperative'
+      path: '/my-cooperative'
+      fullPath: '/my-cooperative'
+      preLoaderRoute: typeof MyCooperativeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/chat': {
@@ -124,18 +180,10 @@ const rootRouteChildren: RootRouteChildren = {
   AnalyticsRoute: AnalyticsRoute,
   AuthRoute: AuthRoute,
   ChatRoute: ChatRoute,
+  MyCooperativeRoute: MyCooperativeRoute,
   MyDashboardRoute: MyDashboardRoute,
+  UssdRoute: UssdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

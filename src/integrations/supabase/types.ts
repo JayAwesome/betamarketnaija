@@ -14,6 +14,89 @@ export type Database = {
   }
   public: {
     Tables: {
+      alerts: {
+        Row: {
+          active: boolean
+          city: string | null
+          created_at: string
+          crop: string
+          direction: string
+          id: string
+          target_price: number
+          user_id: string
+        }
+        Insert: {
+          active?: boolean
+          city?: string | null
+          created_at?: string
+          crop: string
+          direction: string
+          id?: string
+          target_price: number
+          user_id: string
+        }
+        Update: {
+          active?: boolean
+          city?: string | null
+          created_at?: string
+          crop?: string
+          direction?: string
+          id?: string
+          target_price?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      cooperative_members: {
+        Row: {
+          cooperative_id: string
+          joined_at: string
+          user_id: string
+        }
+        Insert: {
+          cooperative_id: string
+          joined_at?: string
+          user_id: string
+        }
+        Update: {
+          cooperative_id?: string
+          joined_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cooperative_members_cooperative_id_fkey"
+            columns: ["cooperative_id"]
+            isOneToOne: false
+            referencedRelation: "cooperatives"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      cooperatives: {
+        Row: {
+          created_at: string
+          created_by: string
+          id: string
+          join_code: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          id?: string
+          join_code: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          id?: string
+          join_code?: string
+          name?: string
+        }
+        Relationships: []
+      }
       favorite_markets: {
         Row: {
           city: string
@@ -67,6 +150,7 @@ export type Database = {
           city: string
           created_at: string
           name: string
+          phone: string | null
           primary_crop: string
           user_id: string
         }
@@ -74,6 +158,7 @@ export type Database = {
           city?: string
           created_at?: string
           name?: string
+          phone?: string | null
           primary_crop?: string
           user_id: string
         }
@@ -81,6 +166,7 @@ export type Database = {
           city?: string
           created_at?: string
           name?: string
+          phone?: string | null
           primary_crop?: string
           user_id?: string
         }
@@ -94,7 +180,11 @@ export type Database = {
           date: string
           id: string
           price: number
+          price_difference: number | null
           quantity: number
+          recommended_price_at_sale: number | null
+          revenue: number | null
+          unit: string
           user_id: string
         }
         Insert: {
@@ -104,7 +194,11 @@ export type Database = {
           date?: string
           id?: string
           price: number
+          price_difference?: number | null
           quantity?: number
+          recommended_price_at_sale?: number | null
+          revenue?: number | null
+          unit?: string
           user_id: string
         }
         Update: {
@@ -114,7 +208,11 @@ export type Database = {
           date?: string
           id?: string
           price?: number
+          price_difference?: number | null
           quantity?: number
+          recommended_price_at_sale?: number | null
+          revenue?: number | null
+          unit?: string
           user_id?: string
         }
         Relationships: []
@@ -124,7 +222,11 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      is_coop_member: {
+        Args: { _coop_id: string; _user_id: string }
+        Returns: boolean
+      }
+      my_coop_ids: { Args: { _user_id: string }; Returns: string[] }
     }
     Enums: {
       [_ in never]: never
