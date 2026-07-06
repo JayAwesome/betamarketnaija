@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UssdRouteImport } from './routes/ussd'
 import { Route as MyDashboardRouteImport } from './routes/my-dashboard'
 import { Route as ChatRouteImport } from './routes/chat'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as IndexRouteImport } from './routes/index'
 
+const UssdRoute = UssdRouteImport.update({
+  id: '/ussd',
+  path: '/ussd',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MyDashboardRoute = MyDashboardRouteImport.update({
   id: '/my-dashboard',
   path: '/my-dashboard',
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
   '/my-dashboard': typeof MyDashboardRoute
+  '/ussd': typeof UssdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
   '/my-dashboard': typeof MyDashboardRoute
+  '/ussd': typeof UssdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,21 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
   '/my-dashboard': typeof MyDashboardRoute
+  '/ussd': typeof UssdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/analytics' | '/auth' | '/chat' | '/my-dashboard'
+  fullPaths: '/' | '/analytics' | '/auth' | '/chat' | '/my-dashboard' | '/ussd'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/analytics' | '/auth' | '/chat' | '/my-dashboard'
-  id: '__root__' | '/' | '/analytics' | '/auth' | '/chat' | '/my-dashboard'
+  to: '/' | '/analytics' | '/auth' | '/chat' | '/my-dashboard' | '/ussd'
+  id:
+    | '__root__'
+    | '/'
+    | '/analytics'
+    | '/auth'
+    | '/chat'
+    | '/my-dashboard'
+    | '/ussd'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,10 +93,18 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   ChatRoute: typeof ChatRoute
   MyDashboardRoute: typeof MyDashboardRoute
+  UssdRoute: typeof UssdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/ussd': {
+      id: '/ussd'
+      path: '/ussd'
+      fullPath: '/ussd'
+      preLoaderRoute: typeof UssdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/my-dashboard': {
       id: '/my-dashboard'
       path: '/my-dashboard'
@@ -125,6 +149,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   ChatRoute: ChatRoute,
   MyDashboardRoute: MyDashboardRoute,
+  UssdRoute: UssdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
