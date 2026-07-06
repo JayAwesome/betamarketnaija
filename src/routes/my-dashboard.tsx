@@ -137,7 +137,7 @@ function MyDashboard() {
     // Deduct inventory: pick oldest matching produce row and reduce quantity
     const matching = produce.filter((p) => p.crop === crop).sort((a, b) => Number(b.quantity) - Number(a.quantity));
     let remaining = quantity;
-    const updates: Promise<unknown>[] = [];
+    const updates: PromiseLike<unknown>[] = [];
     const newProduce = [...produce];
     for (const row of matching) {
       if (remaining <= 0) break;
