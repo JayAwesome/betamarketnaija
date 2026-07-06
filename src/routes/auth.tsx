@@ -20,10 +20,16 @@ export const Route = createFileRoute("/auth")({
   component: AuthPage,
 });
 
+function phoneToEmail(raw: string) {
+  const digits = raw.replace(/\D/g, "");
+  return `${digits}@phone.agrisense.local`;
+}
+
 function AuthPage() {
   const navigate = useNavigate();
   const { user, loading } = useAuth();
-  const [email, setEmail] = useState("");
+  const [mode, setMode] = useState<"email" | "phone">("email");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
 
@@ -31,10 +37,14 @@ function AuthPage() {
     if (!loading && user) navigate({ to: "/my-dashboard" });
   }, [user, loading, navigate]);
 
+  function resolvedEmail() {
+    return mode === "email" ? identifier.trim() : phoneToEmail(identifier);
+  }
+
   async function signIn(e: React.FormEvent) {
     e.preventDefault();
     setBusy(true);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { error } = await supabase.auth.signInWithPassword({ email: resolvedEmail(), password });
     setBusy(false);
     if (error) toast.error(error.message);
     else { toast.success("Welcome back!"); navigate({ to: "/my-dashboard" }); }
@@ -43,10 +53,14 @@ function AuthPage() {
   async function signUp(e: React.FormEvent) {
     e.preventDefault();
     setBusy(true);
+    const email = resolvedEmail();
     const { error } = await supabase.auth.signUp({
       email,
       password,
-      options: { emailRedirectTo: window.location.origin },
+      options: {
+        emailRedirectTo: window.location.origin,
+        data: mode === "phone" ? { phone: identifier } : {},
+      },
     });
     setBusy(false);
     if (error) toast.error(error.message);
@@ -61,39 +75,66 @@ function AuthPage() {
             <Sprout className="h-6 w-6" />
           </div>
           <CardTitle className="text-2xl">AgriSense AI</CardTitle>
-          <CardDescription>Sign in to your farmer dashboard</CardDescription>
+          <CardDescription>Sign in with email or phone number</CardDescription>
         </CardHeader>
         <CardContent>
-          <Tabs defaultValue="signin">
+          <Tabs value={mode} onValueChange={(v) => setMode(v as "email" | "phone")}>
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="signin">Sign in</TabsTrigger>
-              <TabsTrigger value="signup">Create account</TabsTrigger>
+              <TabsTrigger value="email">Email</TabsTrigger>
+              <TabsTrigger value="phone">Phone</TabsTrigger>
             </TabsList>
-            <TabsContent value="signin">
-              <form className="space-y-4 pt-4" onSubmit={signIn}>
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="password">Password</Label>
-                  <Input id="password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                <Button type="submit" className="w-full" disabled={busy}>Sign in</Button>
-              </form>
-            </TabsContent>
-            <TabsContent value="signup">
-              <form className="space-y-4 pt-4" onSubmit={signUp}>
-                <div className="space-y-2">
-                  <Label htmlFor="email2">Email</Label>
-                  <Input id="email2" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="password2">Password (min 6 chars)</Label>
-                  <Input id="password2" type="password" required minLength={6} value={password} onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                <Button type="submit" className="w-full" disabled={busy}>Create account</Button>
-              </form>
+            <TabsContent value={mode} className="pt-4">
+              <Tabs defaultValue="signin">
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="signin">Sign in</TabsTrigger>
+                  <TabsTrigger value="signup">Create account</TabsTrigger>
+                </TabsList>
+                <TabsContent value="signin">
+                  <form className="space-y-4 pt-4" onSubmit={signIn}>
+                    <div className="space-y-2">
+                      <Label htmlFor="identifier">{mode === "email" ? "Email" : "Phone number"}</Label>
+                      <Input
+                        id="identifier"
+                        type={mode === "email" ? "email" : "tel"}
+                        required
+                        value={identifier}
+                        onChange={(e) => setIdentifier(e.target.value)}
+                        placeholder={mode === "email" ? "you@example.com" : "08012345678"}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="password">Password</Label>
+                      <Input id="password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+                    </div>
+                    <Button type="submit" className="w-full" disabled={busy}>Sign in</Button>
+                  </form>
+                </TabsContent>
+                <TabsContent value="signup">
+                  <form className="space-y-4 pt-4" onSubmit={signUp}>
+                    <div className="space-y-2">
+                      <Label htmlFor="identifier2">{mode === "email" ? "Email" : "Phone number"}</Label>
+                      <Input
+                        id="identifier2"
+                        type={mode === "email" ? "email" : "tel"}
+                        required
+                        value={identifier}
+                        onChange={(e) => setIdentifier(e.target.value)}
+                        placeholder={mode === "email" ? "you@example.com" : "08012345678"}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="password2">Password (min 6 chars)</Label>
+                      <Input id="password2" type="password" required minLength={6} value={password} onChange={(e) => setPassword(e.target.value)} />
+                    </div>
+                    <Button type="submit" className="w-full" disabled={busy}>Create account</Button>
+                    {mode === "phone" && (
+                      <p className="text-xs text-muted-foreground">
+                        Prototype: phone accounts are stored securely without SMS verification. A production build would send an OTP via a Nigerian telco.
+                      </p>
+                    )}
+                  </form>
+                </TabsContent>
+              </Tabs>
             </TabsContent>
           </Tabs>
           <div className="pt-4 text-center text-sm text-muted-foreground">
