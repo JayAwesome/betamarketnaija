@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UssdRouteImport } from './routes/ussd'
 import { Route as MyDashboardRouteImport } from './routes/my-dashboard'
+import { Route as MyCooperativeRouteImport } from './routes/my-cooperative'
 import { Route as ChatRouteImport } from './routes/chat'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
@@ -24,6 +25,11 @@ const UssdRoute = UssdRouteImport.update({
 const MyDashboardRoute = MyDashboardRouteImport.update({
   id: '/my-dashboard',
   path: '/my-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyCooperativeRoute = MyCooperativeRouteImport.update({
+  id: '/my-cooperative',
+  path: '/my-cooperative',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChatRoute = ChatRouteImport.update({
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/analytics': typeof AnalyticsRoute
   '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
+  '/my-cooperative': typeof MyCooperativeRoute
   '/my-dashboard': typeof MyDashboardRoute
   '/ussd': typeof UssdRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/analytics': typeof AnalyticsRoute
   '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
+  '/my-cooperative': typeof MyCooperativeRoute
   '/my-dashboard': typeof MyDashboardRoute
   '/ussd': typeof UssdRoute
 }
@@ -69,20 +77,36 @@ export interface FileRoutesById {
   '/analytics': typeof AnalyticsRoute
   '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
+  '/my-cooperative': typeof MyCooperativeRoute
   '/my-dashboard': typeof MyDashboardRoute
   '/ussd': typeof UssdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/analytics' | '/auth' | '/chat' | '/my-dashboard' | '/ussd'
+  fullPaths:
+    | '/'
+    | '/analytics'
+    | '/auth'
+    | '/chat'
+    | '/my-cooperative'
+    | '/my-dashboard'
+    | '/ussd'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/analytics' | '/auth' | '/chat' | '/my-dashboard' | '/ussd'
+  to:
+    | '/'
+    | '/analytics'
+    | '/auth'
+    | '/chat'
+    | '/my-cooperative'
+    | '/my-dashboard'
+    | '/ussd'
   id:
     | '__root__'
     | '/'
     | '/analytics'
     | '/auth'
     | '/chat'
+    | '/my-cooperative'
     | '/my-dashboard'
     | '/ussd'
   fileRoutesById: FileRoutesById
@@ -92,6 +116,7 @@ export interface RootRouteChildren {
   AnalyticsRoute: typeof AnalyticsRoute
   AuthRoute: typeof AuthRoute
   ChatRoute: typeof ChatRoute
+  MyCooperativeRoute: typeof MyCooperativeRoute
   MyDashboardRoute: typeof MyDashboardRoute
   UssdRoute: typeof UssdRoute
 }
@@ -110,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/my-dashboard'
       fullPath: '/my-dashboard'
       preLoaderRoute: typeof MyDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-cooperative': {
+      id: '/my-cooperative'
+      path: '/my-cooperative'
+      fullPath: '/my-cooperative'
+      preLoaderRoute: typeof MyCooperativeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/chat': {
@@ -148,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnalyticsRoute: AnalyticsRoute,
   AuthRoute: AuthRoute,
   ChatRoute: ChatRoute,
+  MyCooperativeRoute: MyCooperativeRoute,
   MyDashboardRoute: MyDashboardRoute,
   UssdRoute: UssdRoute,
 }

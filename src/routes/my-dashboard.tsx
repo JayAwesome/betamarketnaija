@@ -145,11 +145,11 @@ function MyDashboard() {
       const newQty = Number(row.quantity) - take;
       remaining -= take;
       if (newQty <= 0) {
-        updates.push(supabase.from("produce").delete().eq("id", row.id));
+        updates.push(supabase.from("produce").delete().eq("id", row.id).then(() => undefined));
         const idx = newProduce.findIndex((p) => p.id === row.id);
         if (idx >= 0) newProduce.splice(idx, 1);
       } else {
-        updates.push(supabase.from("produce").update({ quantity: newQty }).eq("id", row.id));
+        updates.push(supabase.from("produce").update({ quantity: newQty }).eq("id", row.id).then(() => undefined));
         const idx = newProduce.findIndex((p) => p.id === row.id);
         if (idx >= 0) newProduce[idx] = { ...newProduce[idx], quantity: newQty };
       }
