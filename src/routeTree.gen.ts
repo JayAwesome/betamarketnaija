@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UssdRouteImport } from './routes/ussd'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as MyDashboardRouteImport } from './routes/my-dashboard'
 import { Route as MyCooperativeRouteImport } from './routes/my-cooperative'
 import { Route as ChatRouteImport } from './routes/chat'
@@ -20,6 +21,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const UssdRoute = UssdRouteImport.update({
   id: '/ussd',
   path: '/ussd',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MyDashboardRoute = MyDashboardRouteImport.update({
@@ -60,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/chat': typeof ChatRoute
   '/my-cooperative': typeof MyCooperativeRoute
   '/my-dashboard': typeof MyDashboardRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/ussd': typeof UssdRoute
 }
 export interface FileRoutesByTo {
@@ -69,6 +76,7 @@ export interface FileRoutesByTo {
   '/chat': typeof ChatRoute
   '/my-cooperative': typeof MyCooperativeRoute
   '/my-dashboard': typeof MyDashboardRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/ussd': typeof UssdRoute
 }
 export interface FileRoutesById {
@@ -79,6 +87,7 @@ export interface FileRoutesById {
   '/chat': typeof ChatRoute
   '/my-cooperative': typeof MyCooperativeRoute
   '/my-dashboard': typeof MyDashboardRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/ussd': typeof UssdRoute
 }
 export interface FileRouteTypes {
@@ -90,6 +99,7 @@ export interface FileRouteTypes {
     | '/chat'
     | '/my-cooperative'
     | '/my-dashboard'
+    | '/sitemap.xml'
     | '/ussd'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/chat'
     | '/my-cooperative'
     | '/my-dashboard'
+    | '/sitemap.xml'
     | '/ussd'
   id:
     | '__root__'
@@ -108,6 +119,7 @@ export interface FileRouteTypes {
     | '/chat'
     | '/my-cooperative'
     | '/my-dashboard'
+    | '/sitemap.xml'
     | '/ussd'
   fileRoutesById: FileRoutesById
 }
@@ -118,6 +130,7 @@ export interface RootRouteChildren {
   ChatRoute: typeof ChatRoute
   MyCooperativeRoute: typeof MyCooperativeRoute
   MyDashboardRoute: typeof MyDashboardRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   UssdRoute: typeof UssdRoute
 }
 
@@ -128,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/ussd'
       fullPath: '/ussd'
       preLoaderRoute: typeof UssdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/my-dashboard': {
@@ -182,6 +202,7 @@ const rootRouteChildren: RootRouteChildren = {
   ChatRoute: ChatRoute,
   MyCooperativeRoute: MyCooperativeRoute,
   MyDashboardRoute: MyDashboardRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   UssdRoute: UssdRoute,
 }
 export const routeTree = rootRouteImport

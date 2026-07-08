@@ -1,0 +1,18 @@
+# AgriSense AI
+
+> Market intelligence for Nigerian farmers and traders: compare crop prices across cities, spot trends, and get recommendations on where and when to sell for maximum profit.
+
+AgriSense AI helps smallholder farmers and traders make better selling decisions by aggregating crop prices across 19 Nigerian cities for 13 staple crops (grains, tubers, vegetables, and cash crops). It offers guest-friendly market comparison, an AI assistant grounded in the platform's dataset, personal produce and sales tracking, and cooperative pooling so groups of farmers can access buyer premiums that individuals can't.
+
+## Pages
+
+- [Market Dashboard](/): Compare crop prices across cities with AI-powered sell recommendations.
+- [Analytics](/analytics): 4-week price trends, volatility index, and seasonal market signals per crop.
+- [AI Assistant](/chat): Chat with an assistant grounded in Nigerian market data for personalized selling advice.
+- [My Dashboard](/my-dashboard): Track your produce inventory, record sales, and see profit vs. recommended prices (sign-in required).
+- [My Cooperative](/my-cooperative): Create or join a cooperative to pool produce and unlock group-level buyer recommendations (sign-in required).
+- [USSD Access](/ussd): Conceptual mockup of USSD/SMS access for farmers without smartphones.
+
+## Optional
+
+- [Sign in / Sign up](/auth): Create a farmer account by email or phone.
