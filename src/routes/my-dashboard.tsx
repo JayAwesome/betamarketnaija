@@ -22,7 +22,13 @@ export const Route = createFileRoute("/my-dashboard")({
     meta: [
       { title: "My Dashboard — AgriSense AI" },
       { name: "description", content: "Your personalized farmer dashboard: produce inventory, sales tracker, profit summary, and personalized recommendations." },
+      { property: "og:title", content: "My Farmer Dashboard — AgriSense AI" },
+      { property: "og:description", content: "Track produce inventory, record sales, and compare your realized price against AgriSense recommendations." },
+      { property: "og:url", content: "https://betamarketnaija.lovable.app/my-dashboard" },
+      { name: "twitter:title", content: "My Farmer Dashboard — AgriSense AI" },
+      { name: "twitter:description", content: "Track produce inventory, record sales, and compare your realized price against AgriSense recommendations." },
     ],
+    links: [{ rel: "canonical", href: "https://betamarketnaija.lovable.app/my-dashboard" }],
   }),
   component: MyDashboard,
 });
@@ -273,7 +279,7 @@ function MyDashboard() {
               {produce.map((p) => (
                 <li key={p.id} className="flex items-center justify-between py-2 text-sm">
                   <span><strong>{p.quantity}</strong> {p.unit} of {p.crop}</span>
-                  <Button size="icon" variant="ghost" onClick={() => deleteProduce(p.id)}>
+                  <Button size="icon" variant="ghost" aria-label={`Delete ${p.crop}`} onClick={() => deleteProduce(p.id)}>
                     <Trash2 className="h-4 w-4 text-destructive" />
                   </Button>
                 </li>

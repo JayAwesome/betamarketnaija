@@ -13,7 +13,13 @@ export const Route = createFileRoute("/analytics")({
     meta: [
       { title: "Price Analytics — AgriSense AI" },
       { name: "description", content: "4-week price trends, seasonal insights and volatility index for major Nigerian crops." },
+      { property: "og:title", content: "Price Analytics — AgriSense AI" },
+      { property: "og:description", content: "See 4-week price trends, volatility bands, and directional market signals for Nigerian crops." },
+      { property: "og:url", content: "https://betamarketnaija.lovable.app/analytics" },
+      { name: "twitter:title", content: "Price Analytics — AgriSense AI" },
+      { name: "twitter:description", content: "See 4-week price trends, volatility bands, and directional market signals for Nigerian crops." },
     ],
+    links: [{ rel: "canonical", href: "https://betamarketnaija.lovable.app/analytics" }],
   }),
   component: Analytics,
 });

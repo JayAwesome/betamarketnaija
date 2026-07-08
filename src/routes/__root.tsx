@@ -76,6 +76,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              name: "AgriSense AI",
+              url: "https://betamarketnaija.lovable.app",
+              description: "Smart agricultural market intelligence for Nigerian farmers and traders — crop price comparison, trend analytics and personalized selling recommendations.",
+            },
+            {
+              "@type": "WebSite",
+              name: "AgriSense AI",
+              url: "https://betamarketnaija.lovable.app",
+              inLanguage: ["en", "ig", "ha", "yo"],
+            },
+          ],
+        }),
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
