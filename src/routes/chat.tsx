@@ -13,7 +13,13 @@ export const Route = createFileRoute("/chat")({
     meta: [
       { title: "AI Assistant — AgriSense AI" },
       { name: "description", content: "Ask the AgriSense AI assistant where to sell your crops for the best price." },
+      { property: "og:title", content: "AI Assistant — AgriSense AI" },
+      { property: "og:description", content: "Chat with an AI grounded in Nigerian market data to decide where and when to sell your crops." },
+      { property: "og:url", content: "https://betamarketnaija.lovable.app/chat" },
+      { name: "twitter:title", content: "AI Assistant — AgriSense AI" },
+      { name: "twitter:description", content: "Chat with an AI grounded in Nigerian market data to decide where and when to sell your crops." },
     ],
+    links: [{ rel: "canonical", href: "https://betamarketnaija.lovable.app/chat" }],
   }),
   component: ChatPage,
 });
