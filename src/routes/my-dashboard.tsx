@@ -273,7 +273,7 @@ function MyDashboard() {
               {produce.map((p) => (
                 <li key={p.id} className="flex items-center justify-between py-2 text-sm">
                   <span><strong>{p.quantity}</strong> {p.unit} of {p.crop}</span>
-                  <Button size="icon" variant="ghost" onClick={() => deleteProduce(p.id)}>
+                  <Button size="icon" variant="ghost" aria-label={`Delete ${p.crop}`} onClick={() => deleteProduce(p.id)}>
                     <Trash2 className="h-4 w-4 text-destructive" />
                   </Button>
                 </li>
