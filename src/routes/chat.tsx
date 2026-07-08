@@ -125,7 +125,7 @@ function ChatPage() {
               placeholder="Where should I sell maize this week?"
               disabled={loading}
             />
-            <Button type="submit" disabled={loading || !input.trim()}>
+            <Button type="submit" disabled={loading || !input.trim()} aria-label="Send message">
               <Send className="h-4 w-4" />
             </Button>
           </form>
