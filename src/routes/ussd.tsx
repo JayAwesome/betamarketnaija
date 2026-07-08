@@ -8,7 +8,13 @@ export const Route = createFileRoute("/ussd")({
     meta: [
       { title: "USSD & SMS Demo — AgriSense AI" },
       { name: "description", content: "Concept mockup showing how AgriSense AI could reach farmers without smartphones via USSD shortcodes and SMS." },
+      { property: "og:title", content: "USSD & SMS Access — AgriSense AI" },
+      { property: "og:description", content: "Conceptual mockup of USSD shortcode and SMS delivery for farmers without smartphones or reliable data." },
+      { property: "og:url", content: "https://betamarketnaija.lovable.app/ussd" },
+      { name: "twitter:title", content: "USSD & SMS Access — AgriSense AI" },
+      { name: "twitter:description", content: "Conceptual mockup of USSD shortcode and SMS delivery for farmers without smartphones or reliable data." },
     ],
+    links: [{ rel: "canonical", href: "https://betamarketnaija.lovable.app/ussd" }],
   }),
   component: UssdPage,
 });
