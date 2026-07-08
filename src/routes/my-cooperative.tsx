@@ -17,7 +17,13 @@ export const Route = createFileRoute("/my-cooperative")({
     meta: [
       { title: "My Cooperative — AgriSense AI" },
       { name: "description", content: "Pool produce with other farmers and unlock buyer premiums that individual smallholders can't reach." },
+      { property: "og:title", content: "Cooperative Pooling — AgriSense AI" },
+      { property: "og:description", content: "Join or create a farming cooperative to aggregate produce and unlock group-level buyer recommendations." },
+      { property: "og:url", content: "https://betamarketnaija.lovable.app/my-cooperative" },
+      { name: "twitter:title", content: "Cooperative Pooling — AgriSense AI" },
+      { name: "twitter:description", content: "Join or create a farming cooperative to aggregate produce and unlock group-level buyer recommendations." },
     ],
+    links: [{ rel: "canonical", href: "https://betamarketnaija.lovable.app/my-cooperative" }],
   }),
   component: CoopPage,
 });
