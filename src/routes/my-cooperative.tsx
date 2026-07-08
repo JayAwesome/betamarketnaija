@@ -95,20 +95,15 @@ function CoopPage() {
     e.preventDefault();
     if (!user || !code.trim()) return;
     setBusy(true);
-    const { data: c, error } = await supabase
-      .from("cooperatives")
-      .select("*")
-      .eq("join_code", code.trim().toUpperCase())
-      .maybeSingle();
-    if (error || !c) { setBusy(false); toast.error("Invalid join code"); return; }
-    const { error: mErr } = await supabase
-      .from("cooperative_members")
-      .insert({ cooperative_id: c.id, user_id: user.id });
+    const { data, error } = await supabase.rpc("join_cooperative_by_code", {
+      _code: code.trim().toUpperCase(),
+    });
     setBusy(false);
-    if (mErr) { toast.error(mErr.message); return; }
-    setCoop(c as Coop);
+    const row = Array.isArray(data) ? data[0] : data;
+    if (error || !row) { toast.error(error?.message ?? "Invalid join code"); return; }
+    const c = row as Coop;
+    setCoop(c);
     toast.success(`Joined ${c.name}`);
-    // reload members/produce
     const [{ data: ms }, { data: pr }] = await Promise.all([
       supabase.from("cooperative_members").select("user_id").eq("cooperative_id", c.id),
       supabase.from("produce").select("user_id, crop, quantity, unit"),
