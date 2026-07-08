@@ -25,7 +25,13 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "Market Dashboard — AgriSense AI" },
       { name: "description", content: "Compare crop prices across 19 Nigerian cities and get AI-powered selling recommendations grounded in weekly trend data." },
+      { property: "og:title", content: "Market Dashboard — AgriSense AI" },
+      { property: "og:description", content: "Compare crop prices across 19 Nigerian cities and get AI-powered selling recommendations grounded in weekly trend data." },
+      { property: "og:url", content: "https://betamarketnaija.lovable.app/" },
+      { name: "twitter:title", content: "Market Dashboard — AgriSense AI" },
+      { name: "twitter:description", content: "Compare crop prices across 19 Nigerian cities and get AI-powered selling recommendations grounded in weekly trend data." },
     ],
+    links: [{ rel: "canonical", href: "https://betamarketnaija.lovable.app/" }],
   }),
   component: Dashboard,
 });
