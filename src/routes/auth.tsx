@@ -15,7 +15,14 @@ export const Route = createFileRoute("/auth")({
     meta: [
       { title: "Sign In — AgriSense AI" },
       { name: "description", content: "Sign in to your AgriSense AI farmer dashboard." },
+      { property: "og:title", content: "Sign in — AgriSense AI" },
+      { property: "og:description", content: "Sign in or create a free AgriSense AI account to track produce, sales and cooperative pooling." },
+      { property: "og:url", content: "https://betamarketnaija.lovable.app/auth" },
+      { name: "twitter:title", content: "Sign in — AgriSense AI" },
+      { name: "twitter:description", content: "Sign in or create a free AgriSense AI account to track produce, sales and cooperative pooling." },
+      { name: "robots", content: "noindex" },
     ],
+    links: [{ rel: "canonical", href: "https://betamarketnaija.lovable.app/auth" }],
   }),
   component: AuthPage,
 });
