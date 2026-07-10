@@ -159,7 +159,7 @@ function Dashboard() {
           <CardHeader>
             <CardTitle>{t("card.priceTable")}</CardTitle>
             <CardDescription>
-              {crop} — {t("label.price").toLowerCase()} per {data.unit}. {t("status.highest")} and {t("status.lowest")} markets highlighted.
+              {tf("desc.priceTable", { crop: tCrop(crop), unit: tUnit(data.unit) })}
             </CardDescription>
           </CardHeader>
           <CardContent>
