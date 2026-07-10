@@ -126,6 +126,10 @@ function Dashboard() {
           </CardContent>
         </Card>
 
+        {/* Buyer contacts for the recommended city */}
+        <BuyerContacts city={rec.city} crop={crop} />
+
+
         {/* Trend + Seasonal signals */}
         <div className="grid gap-4 md:grid-cols-2">
           <Card>
