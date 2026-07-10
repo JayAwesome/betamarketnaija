@@ -85,7 +85,7 @@ function Dashboard() {
           <div>
             <h1 className="text-3xl font-bold tracking-tight">{t("page.dashboard.title")}</h1>
             <p className="text-muted-foreground">
-              Compare {crop.toLowerCase()} prices across {CITIES.length} Nigerian markets.
+              {tf("page.dashboard.subtitle", { crop: tCrop(crop).toLowerCase(), n: CITIES.length })}
             </p>
           </div>
           <div className="flex items-center gap-3">
