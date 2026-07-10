@@ -11,6 +11,8 @@ import { useAuth } from "@/lib/auth-context";
 import { GuestNudge } from "@/components/GuestNudge";
 import { CROPS, MARKET, bestCity, formatNaira, type Crop } from "@/lib/market-data";
 import { toast } from "sonner";
+import { useServerFn } from "@tanstack/react-start";
+import { joinCooperativeByCode } from "@/lib/cooperatives.functions";
 
 export const Route = createFileRoute("/my-cooperative")({
   head: () => ({
