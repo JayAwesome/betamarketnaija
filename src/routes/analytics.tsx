@@ -25,7 +25,7 @@ export const Route = createFileRoute("/analytics")({
 });
 
 function Analytics() {
-  const { t } = useT();
+  const { t, tf, tCrop, tUnit } = useT();
   const [crop, setCrop] = useState<Crop>("Tomatoes");
   const d = MARKET[crop];
 
