@@ -203,7 +203,7 @@ function Dashboard() {
                 <Bell className="h-5 w-5 text-primary" />
                 <CardTitle>{t("card.alerts")}</CardTitle>
               </div>
-              <CardDescription>Get notified when {crop.toLowerCase()} hits your target price.</CardDescription>
+              <CardDescription>{tf("desc.alerts", { crop: tCrop(crop).toLowerCase() })}</CardDescription>
             </CardHeader>
             <CardContent>
               {!user ? (
