@@ -16,6 +16,7 @@ import {
   type Crop, type City,
 } from "@/lib/market-data";
 import { useT } from "@/lib/i18n";
+import { BuyerContacts } from "@/components/BuyerContacts";
 import { useAuth } from "@/lib/auth-context";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -124,6 +125,10 @@ function Dashboard() {
             <p className="text-sm leading-relaxed text-foreground/90">{rec.reason}</p>
           </CardContent>
         </Card>
+
+        {/* Buyer contacts for the recommended city */}
+        <BuyerContacts city={rec.city} crop={crop} />
+
 
         {/* Trend + Seasonal signals */}
         <div className="grid gap-4 md:grid-cols-2">
