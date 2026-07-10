@@ -44,7 +44,7 @@ function TrendIcon({ dir }: { dir: "rising" | "falling" | "stable" }) {
 }
 
 function Dashboard() {
-  const { t } = useT();
+  const { t, tf, tCrop, tUnit } = useT();
   const { user } = useAuth();
   const [crop, setCrop] = useState<Crop>("Tomatoes");
   const [alertCity, setAlertCity] = useState<City | "any">("any");
@@ -85,7 +85,7 @@ function Dashboard() {
           <div>
             <h1 className="text-3xl font-bold tracking-tight">{t("page.dashboard.title")}</h1>
             <p className="text-muted-foreground">
-              Compare {crop.toLowerCase()} prices across {CITIES.length} Nigerian markets.
+              {tf("page.dashboard.subtitle", { crop: tCrop(crop).toLowerCase(), n: CITIES.length })}
             </p>
           </div>
           <div className="flex items-center gap-3">
@@ -159,7 +159,7 @@ function Dashboard() {
           <CardHeader>
             <CardTitle>{t("card.priceTable")}</CardTitle>
             <CardDescription>
-              {crop} — {t("label.price").toLowerCase()} per {data.unit}. {t("status.highest")} and {t("status.lowest")} markets highlighted.
+              {tf("desc.priceTable", { crop: tCrop(crop), unit: tUnit(data.unit) })}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -203,7 +203,7 @@ function Dashboard() {
                 <Bell className="h-5 w-5 text-primary" />
                 <CardTitle>{t("card.alerts")}</CardTitle>
               </div>
-              <CardDescription>Get notified when {crop.toLowerCase()} hits your target price.</CardDescription>
+              <CardDescription>{tf("desc.alerts", { crop: tCrop(crop).toLowerCase() })}</CardDescription>
             </CardHeader>
             <CardContent>
               {!user ? (

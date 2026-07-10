@@ -25,7 +25,7 @@ export const Route = createFileRoute("/analytics")({
 });
 
 function Analytics() {
-  const { t } = useT();
+  const { t, tf, tCrop, tUnit } = useT();
   const [crop, setCrop] = useState<Crop>("Tomatoes");
   const d = MARKET[crop];
 
@@ -42,9 +42,9 @@ function Analytics() {
     "bg-muted border-muted";
 
   const volBand =
-    d.volatility < 30 ? { label: "Low", color: "bg-success" } :
-    d.volatility < 60 ? { label: "Medium", color: "bg-warning" } :
-    { label: "High", color: "bg-destructive" };
+    d.volatility < 30 ? { label: t("status.low"), color: "bg-success" } :
+    d.volatility < 60 ? { label: t("status.medium"), color: "bg-warning" } :
+    { label: t("status.high"), color: "bg-destructive" };
 
   const lineColor =
     d.thisWeekDirection === "rising" ? "var(--color-success)" :
@@ -56,7 +56,7 @@ function Analytics() {
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">{t("page.analytics.title")}</h1>
-          <p className="text-muted-foreground">Deeper look at {crop.toLowerCase()} market behavior.</p>
+          <p className="text-muted-foreground">{tf("page.analytics.subtitle", { crop: tCrop(crop).toLowerCase() })}</p>
         </div>
         <CropPicker value={crop} onChange={setCrop} />
       </div>
@@ -64,7 +64,7 @@ function Analytics() {
       <div className="grid gap-4 md:grid-cols-2">
         <Card className={`border ${signalBg}`}>
           <CardHeader>
-            <CardDescription>Market Signal — {t("card.thisWeek")}</CardDescription>
+            <CardDescription>{t("card.marketSignal")} — {t("card.thisWeek")}</CardDescription>
             <CardTitle className="flex items-center gap-2">{dirIcon}{t(`status.${d.thisWeekDirection}`)}</CardTitle>
           </CardHeader>
           <CardContent className="text-sm text-foreground/80">{d.marketNote}</CardContent>
@@ -72,7 +72,7 @@ function Analytics() {
 
         <Card>
           <CardHeader>
-            <CardDescription>Price Volatility Index</CardDescription>
+            <CardDescription>{t("card.volatility")}</CardDescription>
             <CardTitle className="flex items-center gap-2">
               <Activity className="h-5 w-5 text-earth" />
               {d.volatility}/100 · <span className="text-sm font-normal text-muted-foreground">{volBand.label}</span>
@@ -83,9 +83,9 @@ function Analytics() {
               <div className={`h-full ${volBand.color}`} style={{ width: `${d.volatility}%` }} />
             </div>
             <p className="text-xs text-muted-foreground">
-              {d.volatility < 30 ? "Stable pricing, predictable margins." :
-               d.volatility < 60 ? "Some week-to-week swing — plan sales carefully." :
-               "Sharp price movements — time your sale carefully."}
+              {d.volatility < 30 ? t("vol.low") :
+               d.volatility < 60 ? t("vol.medium") :
+               t("vol.high")}
             </p>
           </CardContent>
         </Card>
@@ -93,8 +93,8 @@ function Analytics() {
 
       <Card>
         <CardHeader>
-          <CardTitle>4-Week Price Trend</CardTitle>
-          <CardDescription>National average, {crop} — per {d.unit}</CardDescription>
+          <CardTitle>{t("card.trend4wk")}</CardTitle>
+          <CardDescription>{tf("desc.trend4wk", { crop: tCrop(crop), unit: tUnit(d.unit) })}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="h-72 w-full">
@@ -141,9 +141,9 @@ function Analytics() {
         <CardHeader>
           <div className="flex items-center gap-2">
             <Sprout className="h-5 w-5 text-earth" />
-            <CardTitle>Seasonal Insight</CardTitle>
+            <CardTitle>{t("card.seasonal")}</CardTitle>
           </div>
-          <CardDescription>What to expect over the next 3 weeks</CardDescription>
+          <CardDescription>{t("card.seasonalDesc")}</CardDescription>
         </CardHeader>
         <CardContent className="text-sm leading-relaxed">{d.seasonalInsight}</CardContent>
       </Card>
