@@ -93,8 +93,8 @@ function Analytics() {
 
       <Card>
         <CardHeader>
-          <CardTitle>4-Week Price Trend</CardTitle>
-          <CardDescription>National average, {crop} — per {d.unit}</CardDescription>
+          <CardTitle>{t("card.trend4wk")}</CardTitle>
+          <CardDescription>{tf("desc.trend4wk", { crop: tCrop(crop), unit: tUnit(d.unit) })}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="h-72 w-full">
