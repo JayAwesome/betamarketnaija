@@ -16,6 +16,7 @@ import {
   type Crop, type City,
 } from "@/lib/market-data";
 import { useT } from "@/lib/i18n";
+import { BuyerContacts } from "@/components/BuyerContacts";
 import { useAuth } from "@/lib/auth-context";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
