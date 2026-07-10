@@ -141,9 +141,9 @@ function Analytics() {
         <CardHeader>
           <div className="flex items-center gap-2">
             <Sprout className="h-5 w-5 text-earth" />
-            <CardTitle>Seasonal Insight</CardTitle>
+            <CardTitle>{t("card.seasonal")}</CardTitle>
           </div>
-          <CardDescription>What to expect over the next 3 weeks</CardDescription>
+          <CardDescription>{t("card.seasonalDesc")}</CardDescription>
         </CardHeader>
         <CardContent className="text-sm leading-relaxed">{d.seasonalInsight}</CardContent>
       </Card>
