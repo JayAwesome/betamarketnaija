@@ -11,6 +11,8 @@ import { useAuth } from "@/lib/auth-context";
 import { GuestNudge } from "@/components/GuestNudge";
 import { CROPS, MARKET, bestCity, formatNaira, type Crop } from "@/lib/market-data";
 import { toast } from "sonner";
+import { useServerFn } from "@tanstack/react-start";
+import { joinCooperativeByCode } from "@/lib/cooperatives.functions";
 
 export const Route = createFileRoute("/my-cooperative")({
   head: () => ({
@@ -97,26 +99,28 @@ function CoopPage() {
     toast.success(`Created "${c.name}" — share code ${c.join_code}`);
   }
 
+  const joinFn = useServerFn(joinCooperativeByCode);
+
   async function joinCoop(e: React.FormEvent) {
     e.preventDefault();
     if (!user || !code.trim()) return;
     setBusy(true);
-    const { data, error } = await supabase.rpc("join_cooperative_by_code", {
-      _code: code.trim().toUpperCase(),
-    });
-    setBusy(false);
-    const row = Array.isArray(data) ? data[0] : data;
-    if (error || !row) { toast.error(error?.message ?? "Invalid join code"); return; }
-    const c = row as Coop;
-    setCoop(c);
-    toast.success(`Joined ${c.name}`);
-    const [{ data: ms }, { data: pr }] = await Promise.all([
-      supabase.from("cooperative_members").select("user_id").eq("cooperative_id", c.id),
-      supabase.from("produce").select("user_id, crop, quantity, unit"),
-    ]);
-    setMembers((ms ?? []) as Member[]);
-    const memberIds = new Set(((ms ?? []) as Member[]).map((m) => m.user_id));
-    setProduce(((pr ?? []) as ProduceRow[]).filter((p) => memberIds.has(p.user_id)));
+    try {
+      const c = await joinFn({ data: { code: code.trim() } });
+      setCoop(c as Coop);
+      toast.success(`Joined ${c.name}`);
+      const [{ data: ms }, { data: pr }] = await Promise.all([
+        supabase.from("cooperative_members").select("user_id").eq("cooperative_id", c.id),
+        supabase.from("produce").select("user_id, crop, quantity, unit"),
+      ]);
+      setMembers((ms ?? []) as Member[]);
+      const memberIds = new Set(((ms ?? []) as Member[]).map((m) => m.user_id));
+      setProduce(((pr ?? []) as ProduceRow[]).filter((p) => memberIds.has(p.user_id)));
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Invalid join code");
+    } finally {
+      setBusy(false);
+    }
   }
 
   if (!coop) {

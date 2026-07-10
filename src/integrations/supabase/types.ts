@@ -226,14 +226,6 @@ export type Database = {
         Args: { _coop_id: string; _user_id: string }
         Returns: boolean
       }
-      join_cooperative_by_code: {
-        Args: { _code: string }
-        Returns: {
-          id: string
-          join_code: string
-          name: string
-        }[]
-      }
       my_coop_ids: { Args: { _user_id: string }; Returns: string[] }
     }
     Enums: {
