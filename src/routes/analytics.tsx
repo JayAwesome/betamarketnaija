@@ -42,9 +42,9 @@ function Analytics() {
     "bg-muted border-muted";
 
   const volBand =
-    d.volatility < 30 ? { label: "Low", color: "bg-success" } :
-    d.volatility < 60 ? { label: "Medium", color: "bg-warning" } :
-    { label: "High", color: "bg-destructive" };
+    d.volatility < 30 ? { label: t("status.low"), color: "bg-success" } :
+    d.volatility < 60 ? { label: t("status.medium"), color: "bg-warning" } :
+    { label: t("status.high"), color: "bg-destructive" };
 
   const lineColor =
     d.thisWeekDirection === "rising" ? "var(--color-success)" :
