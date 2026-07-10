@@ -64,7 +64,7 @@ function Analytics() {
       <div className="grid gap-4 md:grid-cols-2">
         <Card className={`border ${signalBg}`}>
           <CardHeader>
-            <CardDescription>Market Signal — {t("card.thisWeek")}</CardDescription>
+            <CardDescription>{t("card.marketSignal")} — {t("card.thisWeek")}</CardDescription>
             <CardTitle className="flex items-center gap-2">{dirIcon}{t(`status.${d.thisWeekDirection}`)}</CardTitle>
           </CardHeader>
           <CardContent className="text-sm text-foreground/80">{d.marketNote}</CardContent>
@@ -72,7 +72,7 @@ function Analytics() {
 
         <Card>
           <CardHeader>
-            <CardDescription>Price Volatility Index</CardDescription>
+            <CardDescription>{t("card.volatility")}</CardDescription>
             <CardTitle className="flex items-center gap-2">
               <Activity className="h-5 w-5 text-earth" />
               {d.volatility}/100 · <span className="text-sm font-normal text-muted-foreground">{volBand.label}</span>
@@ -83,9 +83,9 @@ function Analytics() {
               <div className={`h-full ${volBand.color}`} style={{ width: `${d.volatility}%` }} />
             </div>
             <p className="text-xs text-muted-foreground">
-              {d.volatility < 30 ? "Stable pricing, predictable margins." :
-               d.volatility < 60 ? "Some week-to-week swing — plan sales carefully." :
-               "Sharp price movements — time your sale carefully."}
+              {d.volatility < 30 ? t("vol.low") :
+               d.volatility < 60 ? t("vol.medium") :
+               t("vol.high")}
             </p>
           </CardContent>
         </Card>
