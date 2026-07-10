@@ -44,7 +44,7 @@ function TrendIcon({ dir }: { dir: "rising" | "falling" | "stable" }) {
 }
 
 function Dashboard() {
-  const { t } = useT();
+  const { t, tf, tCrop, tUnit } = useT();
   const { user } = useAuth();
   const [crop, setCrop] = useState<Crop>("Tomatoes");
   const [alertCity, setAlertCity] = useState<City | "any">("any");
