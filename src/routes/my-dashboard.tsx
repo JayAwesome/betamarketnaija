@@ -242,22 +242,22 @@ function MyDashboard() {
   return (
     <div className="mx-auto max-w-6xl space-y-6 p-4 md:p-8">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Welcome, {profile.name}</h1>
-        <p className="text-muted-foreground">Farming in {profile.city} · Primary crop: {profile.primary_crop}</p>
+        <h1 className="text-3xl font-bold tracking-tight">{tf("wel.back", { name: profile.name })}</h1>
+        <p className="text-muted-foreground">{tf("wel.subtitle", { city: profile.city, crop: tCrop(profile.primary_crop) })}</p>
       </div>
 
       <Card className="border-primary/40 bg-gradient-to-br from-primary/5 to-accent/20">
         <CardHeader>
           <div className="flex items-center gap-2">
             <Sparkles className="h-5 w-5 text-primary" />
-            <CardTitle>Personalized Recommendation</CardTitle>
+            <CardTitle>{t("card.personalRec")}</CardTitle>
           </div>
-          <CardDescription>Based on your city, primary crop, and current market prices.</CardDescription>
+          <CardDescription>{t("desc.personalRec")}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-2">
           <p className="text-sm leading-relaxed">{rec.message}</p>
           {totalOfPrimary === 0 && (
-            <p className="text-xs text-muted-foreground">Add produce below for a total-earnings estimate.</p>
+            <p className="text-xs text-muted-foreground">{t("empty.produceHint")}</p>
           )}
         </CardContent>
       </Card>
@@ -266,27 +266,27 @@ function MyDashboard() {
         {/* Produce */}
         <Card>
           <CardHeader>
-            <CardTitle>My Produce</CardTitle>
-            <CardDescription>Inventory deducts automatically when you record a sale.</CardDescription>
+            <CardTitle>{t("card.myProduce")}</CardTitle>
+            <CardDescription>{t("desc.myProduce")}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <form className="grid grid-cols-4 gap-2" onSubmit={(e) => { e.preventDefault(); addProduce(new FormData(e.currentTarget)); (e.currentTarget as HTMLFormElement).reset(); }}>
               <Select name="crop" defaultValue={profile.primary_crop}>
                 <SelectTrigger className="col-span-2"><SelectValue /></SelectTrigger>
-                <SelectContent>{CROPS.map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
+                <SelectContent>{CROPS.map((c) => <SelectItem key={c} value={c}>{tCrop(c)}</SelectItem>)}</SelectContent>
               </Select>
-              <Input name="quantity" type="number" min="0.1" step="0.1" placeholder="Qty" required />
-              <Input name="unit" placeholder="baskets" defaultValue="baskets" />
+              <Input name="quantity" type="number" min="0.1" step="0.1" placeholder={t("ph.qty")} required />
+              <Input name="unit" placeholder={t("ph.unit")} defaultValue="baskets" />
               <Button type="submit" className="col-span-4" disabled={busy}>
-                <Plus className="mr-1 h-4 w-4" /> Add produce
+                <Plus className="mr-1 h-4 w-4" /> {t("btn.addProduce")}
               </Button>
             </form>
             <ul className="divide-y">
-              {produce.length === 0 && <li className="py-4 text-sm text-muted-foreground">No produce yet.</li>}
+              {produce.length === 0 && <li className="py-4 text-sm text-muted-foreground">{t("empty.produce")}</li>}
               {produce.map((p) => (
                 <li key={p.id} className="flex items-center justify-between py-2 text-sm">
-                  <span><strong>{p.quantity}</strong> {p.unit} of {p.crop}</span>
-                  <Button size="icon" variant="ghost" aria-label={`Delete ${p.crop}`} onClick={() => deleteProduce(p.id)}>
+                  <span><strong>{p.quantity}</strong> {p.unit} {tf("my.ofCrop", { crop: tCrop(p.crop) })}</span>
+                  <Button size="icon" variant="ghost" aria-label={tf("my.deleteCrop", { crop: tCrop(p.crop) })} onClick={() => deleteProduce(p.id)}>
                     <Trash2 className="h-4 w-4 text-destructive" />
                   </Button>
                 </li>
@@ -298,28 +298,29 @@ function MyDashboard() {
         {/* Record sale */}
         <Card>
           <CardHeader>
-            <div className="flex items-center gap-2"><Receipt className="h-5 w-5 text-earth" /><CardTitle>Record a Sale</CardTitle></div>
-            <CardDescription>Compare your sale against AgriSense's recommendation.</CardDescription>
+            <div className="flex items-center gap-2"><Receipt className="h-5 w-5 text-earth" /><CardTitle>{t("card.recordSale")}</CardTitle></div>
+            <CardDescription>{t("desc.recordSale")}</CardDescription>
           </CardHeader>
           <CardContent>
             <form className="grid grid-cols-2 gap-2" onSubmit={(e) => { e.preventDefault(); recordSale(new FormData(e.currentTarget)); (e.currentTarget as HTMLFormElement).reset(); }}>
               <Select name="crop" defaultValue={profile.primary_crop}>
                 <SelectTrigger><SelectValue /></SelectTrigger>
-                <SelectContent>{CROPS.map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
+                <SelectContent>{CROPS.map((c) => <SelectItem key={c} value={c}>{tCrop(c)}</SelectItem>)}</SelectContent>
               </Select>
               <Select name="city_sold" defaultValue={profile.city}>
                 <SelectTrigger><SelectValue /></SelectTrigger>
                 <SelectContent>{CITIES.map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
               </Select>
-              <Input name="quantity" type="number" min="0.1" step="0.1" placeholder="Quantity" required />
-              <Input name="unit" placeholder="baskets" defaultValue="baskets" />
-              <Input name="price" type="number" min="1" placeholder="Price per unit (₦)" required className="col-span-2" />
+              <Input name="quantity" type="number" min="0.1" step="0.1" placeholder={t("ph.quantity")} required />
+              <Input name="unit" placeholder={t("ph.unit")} defaultValue="baskets" />
+              <Input name="price" type="number" min="1" placeholder={t("ph.pricePerUnit")} required className="col-span-2" />
               <Input name="date" type="date" defaultValue={new Date().toISOString().slice(0, 10)} className="col-span-2" />
-              <Button type="submit" className="col-span-2" disabled={busy}>Record Sale</Button>
+              <Button type="submit" className="col-span-2" disabled={busy}>{t("btn.record")}</Button>
             </form>
           </CardContent>
         </Card>
       </div>
+
 
       {/* Profit summary + chart */}
       <div className="grid gap-6 md:grid-cols-3">
