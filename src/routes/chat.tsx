@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useServerFn } from "@tanstack/react-start";
 import { askAssistant } from "@/lib/ai-chat.functions";
 import { toast } from "sonner";
+import { useT } from "@/lib/i18n";
 
 export const Route = createFileRoute("/chat")({
   head: () => ({
