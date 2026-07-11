@@ -168,9 +168,14 @@ function MyDashboard() {
     setBusy(false);
 
     if (city_sold !== best && recommendedPrice > price) {
-      toast.success(`Recorded. AgriSense recommended ${best} at ${formatNaira(recommendedPrice)} — ${formatNaira(recommendedPrice - price)} more per ${MARKET[crop].unit}.`);
+      toast.success(tf("toast.saleWithRec", {
+        city: best,
+        price: formatNaira(recommendedPrice),
+        diff: formatNaira(recommendedPrice - price),
+        unit: MARKET[crop].unit,
+      }));
     } else {
-      toast.success("Sale recorded.");
+      toast.success(t("toast.saleRecorded"));
     }
   }
 
