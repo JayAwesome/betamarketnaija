@@ -28,12 +28,9 @@ export const Route = createFileRoute("/chat")({
 interface Msg { role: "user" | "assistant"; content: string }
 
 function ChatPage() {
+  const { t } = useT();
   const [messages, setMessages] = useState<Msg[]>([
-    {
-      role: "assistant",
-      content:
-        "Hello! I'm AgriSense AI. Ask me things like:\n• Where should I sell maize this week?\n• Which city has the highest price for tomatoes?\n• Should I hold my yam or sell now?",
-    },
+    { role: "assistant", content: t("chat.greeting") },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
