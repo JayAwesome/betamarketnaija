@@ -98,7 +98,7 @@ function MyDashboard() {
     const { data, error } = await supabase.from("produce").insert(row).select().single();
     setBusy(false);
     if (error) toast.error(error.message);
-    else if (data) { setProduce((prev) => [data as Produce, ...prev]); toast.success("Produce added"); }
+    else if (data) { setProduce((prev) => [data as Produce, ...prev]); toast.success(t("toast.produceAdded")); }
   }
 
   async function deleteProduce(id: string) {
