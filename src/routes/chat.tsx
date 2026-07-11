@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useServerFn } from "@tanstack/react-start";
 import { askAssistant } from "@/lib/ai-chat.functions";
 import { toast } from "sonner";
+import { useT } from "@/lib/i18n";
 
 export const Route = createFileRoute("/chat")({
   head: () => ({
@@ -27,12 +28,9 @@ export const Route = createFileRoute("/chat")({
 interface Msg { role: "user" | "assistant"; content: string }
 
 function ChatPage() {
+  const { t } = useT();
   const [messages, setMessages] = useState<Msg[]>([
-    {
-      role: "assistant",
-      content:
-        "Hello! I'm AgriSense AI. Ask me things like:\n• Where should I sell maize this week?\n• Which city has the highest price for tomatoes?\n• Should I hold my yam or sell now?",
-    },
+    { role: "assistant", content: t("chat.greeting") },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -55,7 +53,7 @@ function ChatPage() {
       const res = await ask({ data: { messages: next } });
       setMessages((m) => [...m, { role: "assistant", content: res.content }]);
     } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : "Something went wrong";
+      const msg = e instanceof Error ? e.message : t("chat.errorFallback");
       toast.error(msg);
       setMessages((m) => [...m, { role: "assistant", content: `⚠️ ${msg}` }]);
     } finally {
@@ -66,18 +64,18 @@ function ChatPage() {
   return (
     <div className="mx-auto flex h-[calc(100vh-3.5rem)] max-w-4xl flex-col gap-4 p-4 md:p-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">AI Assistant</h1>
+        <h1 className="text-3xl font-bold tracking-tight">{t("page.chat.title")}</h1>
         <p className="text-sm text-muted-foreground">
-          Answers use the same live dataset as the Dashboard and Analytics pages.
+          {t("page.chat.subtitle")}
         </p>
       </div>
 
       <Card className="flex flex-1 flex-col overflow-hidden">
         <CardHeader className="border-b py-3">
           <CardTitle className="flex items-center gap-2 text-base">
-            <Sparkles className="h-4 w-4 text-primary" /> AgriSense Assistant
+            <Sparkles className="h-4 w-4 text-primary" /> {t("chat.assistant")}
           </CardTitle>
-          <CardDescription>Grounded in this week's market data</CardDescription>
+          <CardDescription>{t("chat.grounded")}</CardDescription>
         </CardHeader>
         <CardContent className="flex flex-1 flex-col gap-3 overflow-hidden p-0">
           <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto p-4">
@@ -110,7 +108,7 @@ function ChatPage() {
                   <Sparkles className="h-4 w-4 animate-pulse" />
                 </div>
                 <div className="rounded-2xl bg-muted px-4 py-2 text-sm text-muted-foreground">
-                  Thinking…
+                  {t("chat.thinking")}
                 </div>
               </div>
             )}
@@ -122,10 +120,10 @@ function ChatPage() {
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Where should I sell maize this week?"
+              placeholder={t("chat.placeholder")}
               disabled={loading}
             />
-            <Button type="submit" disabled={loading || !input.trim()} aria-label="Send message">
+            <Button type="submit" disabled={loading || !input.trim()} aria-label={t("chat.send")}>
               <Send className="h-4 w-4" />
             </Button>
           </form>
@@ -134,3 +132,4 @@ function ChatPage() {
     </div>
   );
 }
+

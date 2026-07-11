@@ -239,6 +239,10 @@ const DICT: Record<string, Record<Lang, string>> = {
   "auth.tab.signup":{ en: "Create account", ig: "Mepụta Akaụntụ", ha: "Ƙirƙiri asusu", yo: "Dá àkántì" },
   "auth.pwdHint":  { en: "Password (min 6 chars)", ig: "Paswọdụ (opekarịa 6 mkpụrụedemede)", ha: "Kalmar sirri (min haruffa 6)", yo: "Ọ̀rọ̀ Aṣínà (ó kéré tán àmì 6)" },
 
+  // -------- Chat page extras --------
+  "chat.send":         { en: "Send message", ig: "Ziga ozi", ha: "Aika saƙo", yo: "Firanṣẹ́ ìránṣẹ́" },
+  "chat.errorFallback":{ en: "Something went wrong", ig: "Ihe adịghị mma emere", ha: "Wani abu ya faskara", yo: "Nkan kan ṣàṣìṣe" },
+
   // -------- Dashboard misc --------
   "wel.back":     { en: "Welcome, {name}", ig: "Nnọọ, {name}", ha: "Barka da zuwa, {name}", yo: "Káàbọ̀, {name}" },
   "wel.subtitle": { en: "Farming in {city} · Primary crop: {crop}", ig: "Ọrụ ugbo na {city} · Ihe Ọkụkụ Isi: {crop}", ha: "Noma a {city} · Babban amfani: {crop}", yo: "Àgbẹ̀ ní {city} · Ohun Ọ̀gbìn Àkọ́kọ́: {crop}" },
