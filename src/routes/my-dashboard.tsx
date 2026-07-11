@@ -15,6 +15,7 @@ import {
 } from "@/lib/market-data";
 import { Sparkles, Star, Trash2, Plus, PiggyBank, Receipt } from "lucide-react";
 import { toast } from "sonner";
+import { useT } from "@/lib/i18n";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 
 export const Route = createFileRoute("/my-dashboard")({
