@@ -239,18 +239,8 @@ const DICT: Record<string, Record<Lang, string>> = {
   "auth.tab.signup":{ en: "Create account", ig: "Mepụta Akaụntụ", ha: "Ƙirƙiri asusu", yo: "Dá àkántì" },
   "auth.pwdHint":  { en: "Password (min 6 chars)", ig: "Paswọdụ (opekarịa 6 mkpụrụedemede)", ha: "Kalmar sirri (min haruffa 6)", yo: "Ọ̀rọ̀ Aṣínà (ó kéré tán àmì 6)" },
 
-  // -------- Chat page --------
-  "chat.cardTitle":   { en: "AgriSense Assistant", ig: "Onye Enyemaka AgriSense", ha: "Mataimakin AgriSense", yo: "Olùrànlọ́wọ́ AgriSense" },
-  "chat.cardDesc":    { en: "Grounded in this week's market data", ig: "Sitere na data ahịa nke izu a", ha: "Bisa bayanan kasuwa na wannan mako", yo: "Gẹ́gẹ́ bí dátà ọjà ọ̀sẹ̀ yìí" },
-  "chat.welcome":     {
-    en: "Hello! I'm AgriSense AI. Ask me things like:\n• Where should I sell maize this week?\n• Which city has the highest price for tomatoes?\n• Should I hold my yam or sell now?",
-    ig: "Ndeewo! Abụ m AgriSense AI. Jụọ m ihe ndị dị ka:\n• Ebee ka m ga-ere ọka n'izu a?\n• Kedu obodo nwere ọnụahịa kacha elu maka tomato?\n• M ga-ejide ji m ka m ree ugbu a?",
-    ha: "Sannu! Ni ne AgriSense AI. Tambaye ni abubuwa kamar:\n• A ina zan sayar da masara wannan mako?\n• Wace birni ce ke da farashi mafi girma na tumatir?\n• In riƙe doyata ko in sayar yanzu?",
-    yo: "Bàwo! Èmi ni AgriSense AI. Béèrè lọ́wọ́ mi bíi:\n• Níbo ni mo yẹ láti ta àgbàdo ní ọ̀sẹ̀ yìí?\n• Ìlú wo ni ó ní iye tòmátì tó ga jùlọ?\n• Ǹjẹ́ kí n dá iṣu mi dúró tàbí kí n tà báyìí?",
-  },
-  "chat.thinking":    { en: "Thinking…", ig: "Na-eche…", ha: "Ana tunani…", yo: "Ń ronú…" },
-  "chat.placeholder": { en: "Where should I sell maize this week?", ig: "Ebee ka m ga-ere ọka n'izu a?", ha: "A ina zan sayar da masara wannan mako?", yo: "Níbo ni mo yẹ láti ta àgbàdo ní ọ̀sẹ̀ yìí?" },
-  "chat.send":        { en: "Send message", ig: "Ziga ozi", ha: "Aika saƙo", yo: "Firanṣẹ́ ìránṣẹ́" },
+  // -------- Chat page extras --------
+  "chat.send":         { en: "Send message", ig: "Ziga ozi", ha: "Aika saƙo", yo: "Firanṣẹ́ ìránṣẹ́" },
   "chat.errorFallback":{ en: "Something went wrong", ig: "Ihe adịghị mma emere", ha: "Wani abu ya faskara", yo: "Nkan kan ṣàṣìṣe" },
 
   // -------- Dashboard misc --------
