@@ -83,7 +83,7 @@ function MyDashboard() {
     const { error } = await supabase.from("profiles").upsert(payload);
     setBusy(false);
     if (error) toast.error(error.message);
-    else { setProfile(payload); toast.success("Profile saved"); }
+    else { setProfile(payload); toast.success(t("toast.profileSaved")); }
   }
 
   async function addProduce(fd: FormData) {
