@@ -44,6 +44,7 @@ interface Sale {
 
 function MyDashboard() {
   const { user, loading } = useAuth();
+  const { t, tf, tCrop } = useT();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [produce, setProduce] = useState<Produce[]>([]);
   const [sales, setSales] = useState<Sale[]>([]);
