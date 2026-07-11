@@ -243,6 +243,28 @@ const DICT: Record<string, Record<Lang, string>> = {
   "chat.send":         { en: "Send message", ig: "Ziga ozi", ha: "Aika saƙo", yo: "Firanṣẹ́ ìránṣẹ́" },
   "chat.errorFallback":{ en: "Something went wrong", ig: "Ihe adịghị mma emere", ha: "Wani abu ya faskara", yo: "Nkan kan ṣàṣìṣe" },
 
+  // -------- My Dashboard extras --------
+  "my.revenueTrend":   { en: "Your financial trend over time", ig: "Usoro ego gị n'ime oge", ha: "Yanayin kudinka a kan lokaci", yo: "Ìtòsí owó rẹ ní àkókò" },
+  "my.deleteCrop":     { en: "Delete {crop}", ig: "Hichapụ {crop}", ha: "Share {crop}", yo: "Paarẹ́ {crop}" },
+  "my.ofCrop":         { en: "of {crop}", ig: "nke {crop}", ha: "na {crop}", yo: "ti {crop}" },
+  "my.unitsSuffix":    { en: "units", ig: "iberibe", ha: "raka'oi", yo: "ẹ̀ka" },
+  "my.perUnit":        { en: "per unit", ig: "kwa otu", ha: "kowace raka'i", yo: "fún ẹ̀ka" },
+  "my.avgPerUnit":     { en: "avg {price}/unit · {qty} units", ig: "nkezi {price}/otu · {qty} iberibe", ha: "matsakaici {price}/raka'i · {qty} raka'oi", yo: "àpapọ̀ {price}/ẹ̀ka · {qty} ẹ̀ka" },
+  "ph.qty":            { en: "Qty", ig: "Ọnụọgụ", ha: "Yawa", yo: "Iye" },
+  "ph.quantity":       { en: "Quantity", ig: "Ọnụọgụ", ha: "Yawa", yo: "Iye" },
+  "ph.unit":           { en: "baskets", ig: "nkata", ha: "kwando", yo: "agbọ̀n" },
+  "ph.pricePerUnit":   { en: "Price per unit (₦)", ig: "Ọnụahịa kwa otu (₦)", ha: "Farashi kowace raka'i (₦)", yo: "Iye fún ẹ̀ka (₦)" },
+  "ph.name":           { en: "Name", ig: "Aha", ha: "Suna", yo: "Orúkọ" },
+  "toast.profileSaved":{ en: "Profile saved", ig: "E chekwara profaịlụ", ha: "An ajiye bayanai", yo: "A fi àkọsílẹ̀ pamọ́" },
+  "toast.produceAdded":{ en: "Produce added", ig: "Etinyere mkpụrụ", ha: "An ƙara amfanin gona", yo: "A fi ohun ọ̀gbìn kún" },
+  "toast.saleRecorded":{ en: "Sale recorded.", ig: "E depụtara ire.", ha: "An yi rikodin sayarwa.", yo: "A kọ títà." },
+  "toast.saleWithRec": {
+    en: "Recorded. AgriSense recommended {city} at {price} — {diff} more per {unit}.",
+    ig: "E depụtara. AgriSense tụnyere {city} na {price} — {diff} karịa kwa {unit}.",
+    ha: "An rikodi. AgriSense ya ba da shawarar {city} akan {price} — {diff} ƙari kowace {unit}.",
+    yo: "A kọ. AgriSense dábàá {city} ní {price} — {diff} sí i fún {unit}.",
+  },
+
   // -------- Dashboard misc --------
   "wel.back":     { en: "Welcome, {name}", ig: "Nnọọ, {name}", ha: "Barka da zuwa, {name}", yo: "Káàbọ̀, {name}" },
   "wel.subtitle": { en: "Farming in {city} · Primary crop: {crop}", ig: "Ọrụ ugbo na {city} · Ihe Ọkụkụ Isi: {crop}", ha: "Noma a {city} · Babban amfani: {crop}", yo: "Àgbẹ̀ ní {city} · Ohun Ọ̀gbìn Àkọ́kọ́: {crop}" },
