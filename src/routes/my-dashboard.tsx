@@ -185,28 +185,28 @@ function MyDashboard() {
       <div className="mx-auto max-w-lg p-6">
         <Card>
           <CardHeader>
-            <CardTitle>Complete your profile</CardTitle>
-            <CardDescription>Tell us where you farm so we can personalize recommendations.</CardDescription>
+            <CardTitle>{t("card.completeProfile")}</CardTitle>
+            <CardDescription>{t("misc.completeProfileDesc")}</CardDescription>
           </CardHeader>
           <CardContent>
             <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); saveProfile(new FormData(e.currentTarget)); }}>
-              <div className="space-y-2"><Label htmlFor="name">Full name</Label><Input id="name" name="name" required /></div>
-              <div className="space-y-2"><Label htmlFor="phone">Phone (optional)</Label><Input id="phone" name="phone" type="tel" /></div>
+              <div className="space-y-2"><Label htmlFor="name">{t("label.name")}</Label><Input id="name" name="name" required /></div>
+              <div className="space-y-2"><Label htmlFor="phone">{t("label.phoneOpt")}</Label><Input id="phone" name="phone" type="tel" /></div>
               <div className="space-y-2">
-                <Label>City</Label>
+                <Label>{t("label.city")}</Label>
                 <Select name="city" defaultValue="Abuja">
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>{CITIES.map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label>Primary crop</Label>
+                <Label>{t("label.primaryCrop")}</Label>
                 <Select name="primary_crop" defaultValue="Tomatoes">
                   <SelectTrigger><SelectValue /></SelectTrigger>
-                  <SelectContent>{CROPS.map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
+                  <SelectContent>{CROPS.map((c) => <SelectItem key={c} value={c}>{tCrop(c)}</SelectItem>)}</SelectContent>
                 </Select>
               </div>
-              <Button type="submit" disabled={busy} className="w-full">Save profile</Button>
+              <Button type="submit" disabled={busy} className="w-full">{t("btn.saveProfile")}</Button>
             </form>
           </CardContent>
         </Card>
