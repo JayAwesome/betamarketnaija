@@ -67,7 +67,7 @@ function MyDashboard() {
     })();
   }, [user]);
 
-  if (loading) return <div className="p-8 text-muted-foreground">Loading…</div>;
+  if (loading) return <div className="p-8 text-muted-foreground">{t("misc.loading")}</div>;
   if (!user) return <div className="p-6"><GuestNudge feature="My Dashboard" /></div>;
 
   async function saveProfile(fd: FormData) {
