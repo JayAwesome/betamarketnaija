@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_interactions: {
+        Row: {
+          answer: string
+          city: string | null
+          created_at: string
+          crop: string | null
+          feature: string
+          id: string
+          lang: string
+          question: string
+          user_id: string
+        }
+        Insert: {
+          answer: string
+          city?: string | null
+          created_at?: string
+          crop?: string | null
+          feature: string
+          id?: string
+          lang?: string
+          question: string
+          user_id: string
+        }
+        Update: {
+          answer?: string
+          city?: string | null
+          created_at?: string
+          crop?: string | null
+          feature?: string
+          id?: string
+          lang?: string
+          question?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       alerts: {
         Row: {
           active: boolean
