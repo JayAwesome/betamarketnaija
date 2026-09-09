@@ -13,6 +13,7 @@ import { Route as UssdRouteImport } from './routes/ussd'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as MyDashboardRouteImport } from './routes/my-dashboard'
 import { Route as MyCooperativeRouteImport } from './routes/my-cooperative'
+import { Route as CropDoctorRouteImport } from './routes/crop-doctor'
 import { Route as ChatRouteImport } from './routes/chat'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
@@ -36,6 +37,11 @@ const MyDashboardRoute = MyDashboardRouteImport.update({
 const MyCooperativeRoute = MyCooperativeRouteImport.update({
   id: '/my-cooperative',
   path: '/my-cooperative',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CropDoctorRoute = CropDoctorRouteImport.update({
+  id: '/crop-doctor',
+  path: '/crop-doctor',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChatRoute = ChatRouteImport.update({
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/analytics': typeof AnalyticsRoute
   '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
+  '/crop-doctor': typeof CropDoctorRoute
   '/my-cooperative': typeof MyCooperativeRoute
   '/my-dashboard': typeof MyDashboardRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/analytics': typeof AnalyticsRoute
   '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
+  '/crop-doctor': typeof CropDoctorRoute
   '/my-cooperative': typeof MyCooperativeRoute
   '/my-dashboard': typeof MyDashboardRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/analytics': typeof AnalyticsRoute
   '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
+  '/crop-doctor': typeof CropDoctorRoute
   '/my-cooperative': typeof MyCooperativeRoute
   '/my-dashboard': typeof MyDashboardRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/auth'
     | '/chat'
+    | '/crop-doctor'
     | '/my-cooperative'
     | '/my-dashboard'
     | '/sitemap.xml'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/auth'
     | '/chat'
+    | '/crop-doctor'
     | '/my-cooperative'
     | '/my-dashboard'
     | '/sitemap.xml'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/auth'
     | '/chat'
+    | '/crop-doctor'
     | '/my-cooperative'
     | '/my-dashboard'
     | '/sitemap.xml'
@@ -128,6 +140,7 @@ export interface RootRouteChildren {
   AnalyticsRoute: typeof AnalyticsRoute
   AuthRoute: typeof AuthRoute
   ChatRoute: typeof ChatRoute
+  CropDoctorRoute: typeof CropDoctorRoute
   MyCooperativeRoute: typeof MyCooperativeRoute
   MyDashboardRoute: typeof MyDashboardRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -162,6 +175,13 @@ declare module '@tanstack/react-router' {
       path: '/my-cooperative'
       fullPath: '/my-cooperative'
       preLoaderRoute: typeof MyCooperativeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crop-doctor': {
+      id: '/crop-doctor'
+      path: '/crop-doctor'
+      fullPath: '/crop-doctor'
+      preLoaderRoute: typeof CropDoctorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/chat': {
@@ -200,6 +220,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnalyticsRoute: AnalyticsRoute,
   AuthRoute: AuthRoute,
   ChatRoute: ChatRoute,
+  CropDoctorRoute: CropDoctorRoute,
   MyCooperativeRoute: MyCooperativeRoute,
   MyDashboardRoute: MyDashboardRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
