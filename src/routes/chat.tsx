@@ -5,9 +5,13 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useServerFn } from "@tanstack/react-start";
-import { askAssistant } from "@/lib/ai-chat.functions";
+import { plantingAdvice } from "@/lib/ai-advisor.functions";
 import { toast } from "sonner";
 import { useT } from "@/lib/i18n";
+import { useAuth } from "@/lib/auth-context";
+import { supabase } from "@/integrations/supabase/client";
+import { logAiInteraction } from "@/lib/ai-history";
+import type { City, Crop } from "@/lib/market-data";
 
 export const Route = createFileRoute("/chat")({
   head: () => ({
@@ -28,15 +32,31 @@ export const Route = createFileRoute("/chat")({
 interface Msg { role: "user" | "assistant"; content: string }
 
 function ChatPage() {
-  const { t } = useT();
+  const { t, lang } = useT();
+  const { user } = useAuth();
   const [messages, setMessages] = useState<Msg[]>([
     { role: "assistant", content: t("chat.greeting") },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const ask = useServerFn(askAssistant);
+  const [city, setCity] = useState<City>("Abuja");
+  const [crop, setCrop] = useState<Crop | undefined>(undefined);
+  const ask = useServerFn(plantingAdvice);
   const scrollRef = useRef<HTMLDivElement>(null);
   useRouter();
+
+  useEffect(() => {
+    if (!user) return;
+    supabase
+      .from("profiles")
+      .select("city, primary_crop")
+      .eq("user_id", user.id)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (data?.city) setCity(data.city as City);
+        if (data?.primary_crop) setCrop(data.primary_crop as Crop);
+      });
+  }, [user]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
@@ -50,8 +70,25 @@ function ChatPage() {
     setInput("");
     setLoading(true);
     try {
-      const res = await ask({ data: { messages: next } });
+      const res = await ask({
+        data: {
+          question: text,
+          crop,
+          city,
+          lang,
+          history: next.slice(-7, -1),
+        },
+      });
       setMessages((m) => [...m, { role: "assistant", content: res.content }]);
+      void logAiInteraction({
+        userId: user?.id,
+        feature: "planting_assistant",
+        crop: crop ?? null,
+        city,
+        lang,
+        question: text,
+        answer: res.content,
+      });
     } catch (e: unknown) {
       const msg = e instanceof Error ? e.message : t("chat.errorFallback");
       toast.error(msg);

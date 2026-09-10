@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { LayoutDashboard, LineChart, MessageCircle, User, Users, Smartphone, Sprout } from "lucide-react";
+import { LayoutDashboard, LineChart, MessageCircle, User, Users, Smartphone, Sprout, Stethoscope } from "lucide-react";
 import {
   Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel,
   SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem,
@@ -14,6 +14,7 @@ export function AppSidebar() {
     { key: "nav.dashboard", url: "/", icon: LayoutDashboard },
     { key: "nav.analytics", url: "/analytics", icon: LineChart },
     { key: "nav.chat", url: "/chat", icon: MessageCircle },
+    { key: "nav.doctor", url: "/crop-doctor", icon: Stethoscope },
     { key: "nav.my", url: "/my-dashboard", icon: User },
     { key: "nav.coop", url: "/my-cooperative", icon: Users },
     { key: "nav.ussd", url: "/ussd", icon: Smartphone },
