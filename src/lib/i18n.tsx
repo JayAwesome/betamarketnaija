@@ -375,6 +375,76 @@ const DICT: Record<string, Record<Lang, string>> = {
     ha: "Farashin da aka nuna kwaikwayo ne ga samfurin nunin ilimin 3MTT. A samarwa wannan zai haɗa da tushen kamar Hukumar Kididdiga ta Ƙasa (NBS), Musanyar Kayayyaki na AFEX, da hukumomin noma na jihohi.",
     yo: "Iye tí a fihàn jẹ́ àfarawé fún àpẹẹrẹ 3MTT Knowledge Showcase. Ní ìṣẹ̀dá, èyí yóò darapọ̀ mọ́ àwọn orísun bíi National Bureau of Statistics (NBS), AFEX Commodities Exchange, àti àwọn bọ́ọ̀dì ọ̀gbìn ìpínlẹ̀.",
   },
+
+  // -------- AI features --------
+  "nav.doctor":        { en: "Crop Doctor",          ig: "Dọkịta Ihe Ọkụkụ",       ha: "Likitan Amfanin Gona",  yo: "Dókítà Ohun Ọ̀gbìn" },
+  "page.doctor.title": { en: "AI Crop Doctor",       ig: "Dọkịta Ihe Ọkụkụ AI",    ha: "Likitan Amfanin Gona na AI", yo: "Dókítà Ohun Ọ̀gbìn AI" },
+  "page.doctor.subtitle": {
+    en: "Describe what you see on your farm and get a likely cause and treatment.",
+    ig: "Kọwaa ihe ị na-ahụ n'ugbo gị wee nweta ihe nwere ike ịkpata ya na ọgwụgwọ.",
+    ha: "Bayyana abin da kake gani a gonarka don samun dalili da magani.",
+    yo: "Ṣàpèjúwe ohun tí o rí ní oko rẹ kí o sì gba ohun tó fà á àti ìtọ́jú.",
+  },
+  "doctor.officer":   { en: "Extension Officer AI",  ig: "Onye Nkuzi Ugbo AI",     ha: "Jami'in Aikin Gona AI", yo: "Òṣìṣẹ́ Ìgbélárugẹ AI" },
+  "doctor.grounded":  {
+    en: "Advice is based on your crop, your city's climate zone and the symptoms you select.",
+    ig: "Ndụmọdụ dabere na ihe ọkụkụ gị, mpaghara ihu igwe obodo gị na ihe mgbaàmà ị họọrọ.",
+    ha: "Shawara ta dogara ne akan amfanin gonarka, yanayin garinka da alamun da ka zaɓa.",
+    yo: "Ìmọ̀ràn dá lórí ohun ọ̀gbìn rẹ, ojú ọjọ́ ìlú rẹ àti àwọn àmì tí o yàn.",
+  },
+  "doctor.symptoms":  { en: "What do you see?",      ig: "Gịnị ka ị na-ahụ?",      ha: "Me kake gani?",         yo: "Kí ni o rí?" },
+  "doctor.placeholder": {
+    en: "Add more detail (optional)…",
+    ig: "Tinye nkọwa ọzọ (nhọrọ)…",
+    ha: "Ƙara ƙarin bayani (na zaɓi)…",
+    yo: "Fi àlàyé kún un (àṣàyàn)…",
+  },
+  "doctor.ask":       { en: "Ask",                   ig: "Jụọ",                    ha: "Tambaya",               yo: "Béèrè" },
+  "doctor.thinking":  { en: "Examining your crop…",  ig: "Na-enyocha ihe ọkụkụ gị…", ha: "Ana duba amfanin gonarka…", yo: "Ń ṣàyẹ̀wò ohun ọ̀gbìn rẹ…" },
+  "doctor.disclaimer": {
+    en: "AI guidance only. For serious outbreaks, confirm with your local agricultural extension office.",
+    ig: "Naanị ndụmọdụ AI. Maka nsogbu dị njọ, gakwuru ụlọ ọrụ nkuzi ugbo gị.",
+    ha: "Shawarar AI kawai. Idan matsala ta yi tsanani, tuntuɓi ofishin aikin gona na yankinka.",
+    yo: "Ìmọ̀ràn AI nìkan. Fún ìṣòro ńlá, jẹ́rìí sí i pẹ̀lú ọ́fíìsì ìgbélárugẹ àgbẹ̀ ìlú rẹ.",
+  },
+  "sym.wilting":  { en: "Wilting leaves",     ig: "Akwụkwọ na-akpọnwụ",   ha: "Ganye na yankwanewa",  yo: "Ewé tí ń rọ" },
+  "sym.spots":    { en: "Spots on leaves",    ig: "Ntụpọ n'akwụkwọ",      ha: "Tabo a ganye",         yo: "Àmì lórí ewé" },
+  "sym.yellowing":{ en: "Yellowing",          ig: "Ịcha odo odo",         ha: "Yin rawaya",           yo: "Yíyọ̀ pupa-ofeefee" },
+  "sym.stunted":  { en: "Stunted growth",     ig: "Uto na-adịghị mma",    ha: "Rashin girma",         yo: "Ìdàgbàsókè tí kò tọ́" },
+  "sym.pests":    { en: "Insects / pests",    ig: "Ụmụ ahụhụ",            ha: "Kwari",                yo: "Kòkòrò" },
+  "sym.rot":      { en: "Rotting fruit/root", ig: "Mkpụrụ/mgbọrọgwụ rere ure", ha: "Ruɓewar 'ya'ya/saiwa", yo: "Èso/gbòngbò tó ń jẹrà" },
+  "sym.holes":    { en: "Holes in leaves",    ig: "Oghere n'akwụkwọ",     ha: "Ramuka a ganye",       yo: "Ihò nínú ewé" },
+  "sym.mould":    { en: "White/grey mould",   ig: "Ebu ọcha",             ha: "Fungi fari",           yo: "Ìmúlẹ̀ funfun" },
+
+  "ai.advisor.title": { en: "AI Market Advisor",     ig: "Onye Ndụmọdụ Ahịa AI",   ha: "Mai Ba da Shawarar Kasuwa AI", yo: "Olùdámọ̀ràn Ọjà AI" },
+  "ai.advisor.desc":  {
+    en: "A short read on where prices are heading for this crop.",
+    ig: "Nkọwa dị mkpirikpi maka ebe ọnụahịa ihe ọkụkụ a na-aga.",
+    ha: "Taƙaitaccen bayani kan inda farashin wannan amfanin gona zai dosa.",
+    yo: "Àlàyé kúkúrú lórí ibi tí iye ohun ọ̀gbìn yìí ń lọ.",
+  },
+  "ai.tips.title":    { en: "Your Weekly Farming Tips", ig: "Ndụmọdụ Ọrụ Ugbo Izu A", ha: "Shawarwarin Noma na Wannan Mako", yo: "Ìmọ̀ràn Àgbẹ̀ Ọ̀sẹ̀ Yìí" },
+  "ai.tips.desc":     {
+    en: "Personalised for your crops, your city and this season.",
+    ig: "Ahaziri maka ihe ọkụkụ gị, obodo gị na oge a.",
+    ha: "An keɓance don amfanin gonarka, garinka da wannan lokaci.",
+    yo: "Tí a ṣe fún ohun ọ̀gbìn rẹ, ìlú rẹ àti àkókò yìí.",
+  },
+  "ai.loading":  { en: "Thinking…",  ig: "Na-eche echiche…", ha: "Ana tunani…", yo: "Ń ronú…" },
+  "ai.refresh":  { en: "Refresh",    ig: "Mee ọhụrụ",        ha: "Sabunta",     yo: "Sọ ọ́ di tuntun" },
+  "ai.error":    {
+    en: "The AI is unavailable right now. Please try again in a moment.",
+    ig: "AI adịghị arụ ọrụ ugbu a. Biko nwaa ọzọ obere oge.",
+    ha: "AI ba ya aiki yanzu. Da fatan za a sake gwadawa nan da ɗan lokaci.",
+    yo: "AI kò sí lọ́wọ́lọ́wọ́. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kansí.",
+  },
+  "ai.history":  { en: "Your recent questions", ig: "Ajụjụ gị na nso nso a", ha: "Tambayoyinka na baya-bayan nan", yo: "Àwọn ìbéèrè rẹ láìpẹ́" },
+  "ai.history.desc": {
+    en: "Saved to your account so you can look back at past advice.",
+    ig: "Echekwara ya n'akaụntụ gị ka ị nwee ike ilaghachi na ndụmọdụ gara aga.",
+    ha: "An ajiye a asusunka domin ka iya duba shawarwarin baya.",
+    yo: "A tọ́jú rẹ̀ sí àkántì rẹ kí o lè wo ìmọ̀ràn àtijọ́.",
+  },
 };
 
 // -------- Crop-name translations --------
