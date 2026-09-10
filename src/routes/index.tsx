@@ -17,6 +17,7 @@ import {
 } from "@/lib/market-data";
 import { useT } from "@/lib/i18n";
 import { BuyerContacts } from "@/components/BuyerContacts";
+import { MarketAdvisorCard } from "@/components/MarketAdvisorCard";
 import { useAuth } from "@/lib/auth-context";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -125,6 +126,9 @@ function Dashboard() {
             <p className="text-sm leading-relaxed text-foreground/90">{rec.reason}</p>
           </CardContent>
         </Card>
+
+        {/* AI market advisory for the recommended city */}
+        <MarketAdvisorCard crop={crop} city={rec.city} />
 
         {/* Buyer contacts for the recommended city */}
         <BuyerContacts city={rec.city} crop={crop} />
