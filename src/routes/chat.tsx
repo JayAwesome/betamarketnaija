@@ -5,9 +5,13 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useServerFn } from "@tanstack/react-start";
-import { askAssistant } from "@/lib/ai-chat.functions";
+import { plantingAdvice } from "@/lib/ai-advisor.functions";
 import { toast } from "sonner";
 import { useT } from "@/lib/i18n";
+import { useAuth } from "@/lib/auth-context";
+import { supabase } from "@/integrations/supabase/client";
+import { logAiInteraction } from "@/lib/ai-history";
+import type { City, Crop } from "@/lib/market-data";
 
 export const Route = createFileRoute("/chat")({
   head: () => ({
