@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth-context";
 import { GuestNudge } from "@/components/GuestNudge";
+import { FarmingTips } from "@/components/FarmingTips";
 import {
   CITIES, CROPS, MARKET, farmerRecommendation, formatNaira, bestCity,
   type City, type Crop,
@@ -261,6 +262,11 @@ function MyDashboard() {
           )}
         </CardContent>
       </Card>
+
+      <FarmingTips
+        crops={Array.from(new Set([profile.primary_crop, ...produce.map((p) => p.crop)])).slice(0, 4)}
+        city={profile.city}
+      />
 
       <div className="grid gap-6 md:grid-cols-2">
         {/* Produce */}
