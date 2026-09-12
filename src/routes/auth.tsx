@@ -41,7 +41,7 @@ function AuthPage() {
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
-    if (!loading && user) navigate({ to: "/my-dashboard" });
+    if (!loading && user) navigate({ to: "/profile-setup" });
   }, [user, loading, navigate]);
 
   function resolvedEmail() {
@@ -71,7 +71,7 @@ function AuthPage() {
     });
     setBusy(false);
     if (error) toast.error(error.message);
-    else { toast.success("Account created — you're signed in."); navigate({ to: "/my-dashboard" }); }
+    else { toast.success("Account created — you're signed in."); navigate({ to: "/profile-setup" }); }
   }
 
   return (
