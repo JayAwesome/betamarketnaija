@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UssdRouteImport } from './routes/ussd'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ProfileSetupRouteImport } from './routes/profile-setup'
 import { Route as MyDashboardRouteImport } from './routes/my-dashboard'
 import { Route as MyCooperativeRouteImport } from './routes/my-cooperative'
 import { Route as CropDoctorRouteImport } from './routes/crop-doctor'
@@ -27,6 +28,11 @@ const UssdRoute = UssdRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileSetupRoute = ProfileSetupRouteImport.update({
+  id: '/profile-setup',
+  path: '/profile-setup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MyDashboardRoute = MyDashboardRouteImport.update({
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/crop-doctor': typeof CropDoctorRoute
   '/my-cooperative': typeof MyCooperativeRoute
   '/my-dashboard': typeof MyDashboardRoute
+  '/profile-setup': typeof ProfileSetupRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/ussd': typeof UssdRoute
 }
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/crop-doctor': typeof CropDoctorRoute
   '/my-cooperative': typeof MyCooperativeRoute
   '/my-dashboard': typeof MyDashboardRoute
+  '/profile-setup': typeof ProfileSetupRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/ussd': typeof UssdRoute
 }
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/crop-doctor': typeof CropDoctorRoute
   '/my-cooperative': typeof MyCooperativeRoute
   '/my-dashboard': typeof MyDashboardRoute
+  '/profile-setup': typeof ProfileSetupRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/ussd': typeof UssdRoute
 }
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/crop-doctor'
     | '/my-cooperative'
     | '/my-dashboard'
+    | '/profile-setup'
     | '/sitemap.xml'
     | '/ussd'
   fileRoutesByTo: FileRoutesByTo
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/crop-doctor'
     | '/my-cooperative'
     | '/my-dashboard'
+    | '/profile-setup'
     | '/sitemap.xml'
     | '/ussd'
   id:
@@ -131,6 +142,7 @@ export interface FileRouteTypes {
     | '/crop-doctor'
     | '/my-cooperative'
     | '/my-dashboard'
+    | '/profile-setup'
     | '/sitemap.xml'
     | '/ussd'
   fileRoutesById: FileRoutesById
@@ -143,6 +155,7 @@ export interface RootRouteChildren {
   CropDoctorRoute: typeof CropDoctorRoute
   MyCooperativeRoute: typeof MyCooperativeRoute
   MyDashboardRoute: typeof MyDashboardRoute
+  ProfileSetupRoute: typeof ProfileSetupRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   UssdRoute: typeof UssdRoute
 }
@@ -161,6 +174,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile-setup': {
+      id: '/profile-setup'
+      path: '/profile-setup'
+      fullPath: '/profile-setup'
+      preLoaderRoute: typeof ProfileSetupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/my-dashboard': {
@@ -223,6 +243,7 @@ const rootRouteChildren: RootRouteChildren = {
   CropDoctorRoute: CropDoctorRoute,
   MyCooperativeRoute: MyCooperativeRoute,
   MyDashboardRoute: MyDashboardRoute,
+  ProfileSetupRoute: ProfileSetupRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   UssdRoute: UssdRoute,
 }
