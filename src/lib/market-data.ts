@@ -1,4 +1,6 @@
-// Simulated national market intelligence dataset for the 3MTT prototype.
+// National market intelligence dataset. Crop base prices are benchmarked to
+// reported Nigerian wholesale market ranges (September 2026 press/market surveys);
+// city prices apply regional supply/demand bias on top of that national anchor.
 // Every (crop, city) pair has a UNIQUE price. Every crop has its own trend,
 // seasonal outlook, volatility, and market note.
 
@@ -52,7 +54,7 @@ interface CropSpec {
 const CROP_SPECS: Record<Crop, CropSpec> = {
   Tomatoes: {
     unit: "basket (50kg)",
-    basePrice: 24000, trendPct: -0.045,
+    basePrice: 33000, trendPct: -0.045,
     thisWeek: "falling", nextThreeWeeks: "rising", volatility: 78,
     seasonalInsight: "Harvest gluts from Jos and Kano are pulling prices down this week, but the dry-season transition typically lifts tomato prices sharply in ~3 weeks.",
     marketNote: "Tomato supply is high nationally, so prices are dropping — but a seasonal rebound is expected soon.",
@@ -60,7 +62,7 @@ const CROP_SPECS: Record<Crop, CropSpec> = {
   },
   Rice: {
     unit: "50kg bag",
-    basePrice: 64000, trendPct: 0.025,
+    basePrice: 58000, trendPct: 0.025,
     thisWeek: "rising", nextThreeWeeks: "rising", volatility: 32,
     seasonalInsight: "Rice demand is steadily climbing into the festive quarter; expect continued upward pressure over the next 3 weeks.",
     marketNote: "Consistent nationwide demand is pushing rice prices up week over week.",
@@ -68,7 +70,7 @@ const CROP_SPECS: Record<Crop, CropSpec> = {
   },
   Maize: {
     unit: "100kg bag",
-    basePrice: 50000, trendPct: 0.035,
+    basePrice: 52000, trendPct: 0.035,
     thisWeek: "rising", nextThreeWeeks: "stable", volatility: 41,
     seasonalInsight: "Poultry-feed demand in Kano is driving maize higher, but the market is expected to plateau once new stock arrives from the Middle Belt.",
     marketNote: "Feed-mill buying in Kano is lifting maize prices right now.",
@@ -76,7 +78,7 @@ const CROP_SPECS: Record<Crop, CropSpec> = {
   },
   Yam: {
     unit: "tuber (medium)",
-    basePrice: 6000, trendPct: -0.04,
+    basePrice: 6500, trendPct: -0.04,
     thisWeek: "falling", nextThreeWeeks: "falling", volatility: 55,
     seasonalInsight: "Yam prices are in a sustained decline as fresh harvests from Benue and Nasarawa reach urban markets. Further declines are expected over the next 3 weeks.",
     marketNote: "New harvest supply is flooding markets — yam prices are dropping and expected to keep falling.",
@@ -84,7 +86,7 @@ const CROP_SPECS: Record<Crop, CropSpec> = {
   },
   Cassava: {
     unit: "100kg bag (fresh)",
-    basePrice: 25000, trendPct: 0.008,
+    basePrice: 28000, trendPct: 0.008,
     thisWeek: "stable", nextThreeWeeks: "rising", volatility: 22,
     seasonalInsight: "Cassava prices are holding steady this week, with a modest lift expected as industrial garri and ethanol buyers ramp up procurement.",
     marketNote: "Cassava is trading in a tight range with a slight upward bias.",
@@ -92,7 +94,7 @@ const CROP_SPECS: Record<Crop, CropSpec> = {
   },
   Sorghum: {
     unit: "100kg bag",
-    basePrice: 42000, trendPct: 0.018,
+    basePrice: 45000, trendPct: 0.018,
     thisWeek: "rising", nextThreeWeeks: "rising", volatility: 36,
     seasonalInsight: "Brewery and poultry-feed demand is nudging sorghum prices higher across the North, with continued firmness expected.",
     marketNote: "Brewery procurement is quietly firming sorghum prices.",
@@ -100,7 +102,7 @@ const CROP_SPECS: Record<Crop, CropSpec> = {
   },
   Millet: {
     unit: "100kg bag",
-    basePrice: 46000, trendPct: -0.012,
+    basePrice: 48000, trendPct: -0.012,
     thisWeek: "falling", nextThreeWeeks: "stable", volatility: 44,
     seasonalInsight: "Millet is easing slightly as northern harvests move to market, but prices should stabilize once retail demand catches up.",
     marketNote: "Fresh northern supply is pressing millet prices lower this week.",
@@ -108,7 +110,7 @@ const CROP_SPECS: Record<Crop, CropSpec> = {
   },
   Groundnut: {
     unit: "100kg bag (shelled)",
-    basePrice: 92000, trendPct: 0.03,
+    basePrice: 105000, trendPct: 0.03,
     thisWeek: "rising", nextThreeWeeks: "rising", volatility: 48,
     seasonalInsight: "Export interest and vegetable-oil demand are lifting groundnut across the board; upward pressure expected to continue.",
     marketNote: "Oil-mill and export buying is pushing groundnut prices up.",
@@ -116,7 +118,7 @@ const CROP_SPECS: Record<Crop, CropSpec> = {
   },
   "Beans/Cowpea": {
     unit: "100kg bag",
-    basePrice: 88000, trendPct: -0.02,
+    basePrice: 100000, trendPct: -0.02,
     thisWeek: "falling", nextThreeWeeks: "rising", volatility: 62,
     seasonalInsight: "Cowpea supply from Sokoto and Zamfara is soft this week, but tight carryover stocks and festive demand should rebound prices within 3 weeks.",
     marketNote: "Beans are dipping on short-term supply, but tight stocks point to a rebound.",
@@ -124,7 +126,7 @@ const CROP_SPECS: Record<Crop, CropSpec> = {
   },
   Plantain: {
     unit: "bunch (medium)",
-    basePrice: 5200, trendPct: 0.022,
+    basePrice: 6000, trendPct: 0.022,
     thisWeek: "rising", nextThreeWeeks: "stable", volatility: 51,
     seasonalInsight: "Southern plantain is firmer this week on strong urban demand, with prices expected to plateau as fresh bunches reach markets.",
     marketNote: "Urban demand is lifting plantain prices in the South.",
@@ -132,7 +134,7 @@ const CROP_SPECS: Record<Crop, CropSpec> = {
   },
   Onion: {
     unit: "50kg bag",
-    basePrice: 55000, trendPct: -0.03,
+    basePrice: 80000, trendPct: -0.03,
     thisWeek: "falling", nextThreeWeeks: "rising", volatility: 71,
     seasonalInsight: "Onion prices are easing as trailer loads arrive from Sokoto and Kebbi. Storage losses typically push prices sharply higher within 3 weeks.",
     marketNote: "Fresh onion trailers from the North are dropping prices this week.",
@@ -140,7 +142,7 @@ const CROP_SPECS: Record<Crop, CropSpec> = {
   },
   Pepper: {
     unit: "basket (30kg)",
-    basePrice: 18000, trendPct: 0.028,
+    basePrice: 40000, trendPct: 0.028,
     thisWeek: "rising", nextThreeWeeks: "falling", volatility: 82,
     seasonalInsight: "Fresh pepper prices are climbing on tight supply, but a fresh wave of harvest from Kaduna and Jos is expected to soften prices in ~3 weeks.",
     marketNote: "Tight supply is pushing pepper prices up sharply this week.",
@@ -148,7 +150,7 @@ const CROP_SPECS: Record<Crop, CropSpec> = {
   },
   "Palm Oil": {
     unit: "25L jerry can",
-    basePrice: 78000, trendPct: 0.015,
+    basePrice: 72000, trendPct: 0.015,
     thisWeek: "stable", nextThreeWeeks: "rising", volatility: 29,
     seasonalInsight: "Palm oil is holding steady with a modest upside as processors restock; expect a gradual lift over the next 3 weeks.",
     marketNote: "Palm oil is trading in a tight range with a slight upward bias.",

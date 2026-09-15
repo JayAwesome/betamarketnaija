@@ -10,6 +10,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth-context";
 import { GuestNudge } from "@/components/GuestNudge";
 import { FarmingTips } from "@/components/FarmingTips";
+import { MarketAdvisorCard } from "@/components/MarketAdvisorCard";
+import { ExtensionOfficerChat } from "@/components/ExtensionOfficerChat";
 import {
   CITIES, CROPS, MARKET, farmerRecommendation, formatNaira, bestCity,
   type City, type Crop,
@@ -267,6 +269,10 @@ function MyDashboard() {
         crops={Array.from(new Set([profile.primary_crop, ...produce.map((p) => p.crop)])).slice(0, 4)}
         city={profile.city}
       />
+
+      <MarketAdvisorCard crop={profile.primary_crop} city={bestCity(profile.primary_crop)} />
+
+      <ExtensionOfficerChat crop={profile.primary_crop} city={profile.city} />
 
       <div className="grid gap-6 md:grid-cols-2">
         {/* Produce */}

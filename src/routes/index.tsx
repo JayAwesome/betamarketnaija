@@ -18,6 +18,7 @@ import {
 import { useT } from "@/lib/i18n";
 import { BuyerContacts } from "@/components/BuyerContacts";
 import { MarketAdvisorCard } from "@/components/MarketAdvisorCard";
+import { ExtensionOfficerChat } from "@/components/ExtensionOfficerChat";
 import { useAuth } from "@/lib/auth-context";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -129,6 +130,9 @@ function Dashboard() {
 
         {/* AI market advisory for the recommended city */}
         <MarketAdvisorCard crop={crop} city={rec.city} />
+
+        {/* Ask the Extension Officer */}
+        <ExtensionOfficerChat crop={crop} city={rec.city} />
 
         {/* Buyer contacts for the recommended city */}
         <BuyerContacts city={rec.city} crop={crop} />
@@ -289,8 +293,9 @@ function Dashboard() {
         <div className="flex items-start gap-2 rounded-lg border border-dashed border-warning/50 bg-warning/5 p-4 text-xs text-muted-foreground">
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-warning" />
           <p>
-            <strong>Demo dataset.</strong> Prices shown are simulated for the 3MTT Knowledge
-            Showcase prototype. In production this feed would integrate with sources such as the
+            <strong>Reference prices.</strong> Crop prices are benchmarked to reported Nigerian
+            wholesale market ranges (September 2026) and adjusted per city for regional supply and
+            demand. They are indicative, not live quotes — a production feed would connect to the
             <em> National Bureau of Statistics (NBS)</em>, <em>AFEX Commodities Exchange</em>, and
             state agricultural boards.
           </p>
