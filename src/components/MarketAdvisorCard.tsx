@@ -17,6 +17,7 @@ export function MarketAdvisorCard({ crop, city }: { crop: Crop; city: City }) {
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [nonce, setNonce] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -43,7 +44,7 @@ export function MarketAdvisorCard({ crop, city }: { crop: Crop; city: City }) {
       cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [crop, city, lang]);
+  }, [crop, city, lang, nonce]);
 
   return (
     <Card className="border-primary/30">
@@ -58,7 +59,7 @@ export function MarketAdvisorCard({ crop, city }: { crop: Crop; city: City }) {
             className="ml-auto"
             aria-label={t("ai.refresh")}
             disabled={loading}
-            onClick={() => setText("")}
+            onClick={() => setNonce((n) => n + 1)}
           >
             <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
           </Button>
