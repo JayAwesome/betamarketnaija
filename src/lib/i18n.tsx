@@ -445,6 +445,24 @@ const DICT: Record<string, Record<Lang, string>> = {
     ha: "An ajiye a asusunka domin ka iya duba shawarwarin baya.",
     yo: "A tọ́jú rẹ̀ sí àkántì rẹ kí o lè wo ìmọ̀ràn àtijọ́.",
   },
+  "ai.officer.title": {
+    en: "Ask the Extension Officer",
+    ig: "Jụọ Onye Nkuzi Ọrụ Ugbo",
+    ha: "Tambayi Jami'in Aikin Gona",
+    yo: "Béèrè lọ́wọ́ Òṣìṣẹ́ Ìgbélárugẹ Àgbẹ̀",
+  },
+  "ai.officer.desc": {
+    en: "Ask any farming or market question and get an answer in your language.",
+    ig: "Jụọ ajụjụ ọ bụla gbasara ọrụ ugbo ma ọ bụ ahịa, nweta azịza n'asụsụ gị.",
+    ha: "Yi kowace tambaya kan noma ko kasuwa ka samu amsa da harshenka.",
+    yo: "Béèrè ìbéèrè àgbẹ̀ tàbí ọjà kankan kí o sì gba ìdáhùn ní èdè rẹ.",
+  },
+  "ai.officer.empty": {
+    en: "Ask me things like:\n• When should I plant maize this season?\n• Should I sell my tomatoes now or hold?\n• How do I store yam to reduce losses?",
+    ig: "Jụọ m ihe ndị dị ka:\n• Olee mgbe m ga-akụ ọka n'oge a?\n• M ga-ere tomato m ugbu a ka m jide ya?\n• Kedu ka m ga-esi chekwaa ji iji belata mfu?",
+    ha: "Ka tambaye ni abubuwa kamar:\n• Yaushe zan shuka masara a wannan lokaci?\n• In sayar da tumatura yanzu ko in riƙe?\n• Yaya zan adana doya don rage asara?",
+    yo: "Béèrè irú àwọn ìbéèrè bí:\n• Ìgbà wo ni kí n gbin àgbàdo ní àkókò yìí?\n• Ṣé kí n ta tòmátì mi báyìí tàbí kí n dúró?\n• Báwo ni mo ṣe lè tọ́jú iṣu láti dín ìpàdánù kù?",
+  },
 };
 
 // -------- Crop-name translations --------
