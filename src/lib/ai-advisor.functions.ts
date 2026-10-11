@@ -15,8 +15,14 @@ const GATEWAY = "https://ai.gateway.lovable.dev/v1/chat/completions";
 const MODEL = "openai/gpt-6-astra";
 
 async function callAI(system: string, user: string): Promise<string> {
+  // Primary: N-ATLAS (Nigeria's multilingual LLM). Fallback: Lovable AI Gateway.
+  const { callNatlas } = await import("./natlas.server");
+  const natlas = await callNatlas(system, user);
+  if (natlas) return natlas;
+
   const key = process.env.LOVABLE_API_KEY;
   if (!key) throw new Error("AI is not configured right now. Please try again later.");
+
 
   const res = await fetch(GATEWAY, {
     method: "POST",
