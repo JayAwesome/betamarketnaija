@@ -9,55 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as UssdRouteImport } from './routes/ussd'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as ProfileSetupRouteImport } from './routes/profile-setup'
-import { Route as MyDashboardRouteImport } from './routes/my-dashboard'
-import { Route as MyCooperativeRouteImport } from './routes/my-cooperative'
-import { Route as CropDoctorRouteImport } from './routes/crop-doctor'
-import { Route as ChatRouteImport } from './routes/chat'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ChatRouteImport } from './routes/chat'
+import { Route as CropDoctorRouteImport } from './routes/crop-doctor'
+import { Route as MyCooperativeRouteImport } from './routes/my-cooperative'
+import { Route as MyDashboardRouteImport } from './routes/my-dashboard'
+import { Route as ProfileSetupRouteImport } from './routes/profile-setup'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as UssdRouteImport } from './routes/ussd'
 
-const UssdRoute = UssdRouteImport.update({
-  id: '/ussd',
-  path: '/ussd',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProfileSetupRoute = ProfileSetupRouteImport.update({
-  id: '/profile-setup',
-  path: '/profile-setup',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MyDashboardRoute = MyDashboardRouteImport.update({
-  id: '/my-dashboard',
-  path: '/my-dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MyCooperativeRoute = MyCooperativeRouteImport.update({
-  id: '/my-cooperative',
-  path: '/my-cooperative',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CropDoctorRoute = CropDoctorRouteImport.update({
-  id: '/crop-doctor',
-  path: '/crop-doctor',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ChatRoute = ChatRouteImport.update({
-  id: '/chat',
-  path: '/chat',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AnalyticsRoute = AnalyticsRouteImport.update({
@@ -65,9 +30,44 @@ const AnalyticsRoute = AnalyticsRouteImport.update({
   path: '/analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatRoute = ChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CropDoctorRoute = CropDoctorRouteImport.update({
+  id: '/crop-doctor',
+  path: '/crop-doctor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyCooperativeRoute = MyCooperativeRouteImport.update({
+  id: '/my-cooperative',
+  path: '/my-cooperative',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyDashboardRoute = MyDashboardRouteImport.update({
+  id: '/my-dashboard',
+  path: '/my-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileSetupRoute = ProfileSetupRouteImport.update({
+  id: '/profile-setup',
+  path: '/profile-setup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UssdRoute = UssdRouteImport.update({
+  id: '/ussd',
+  path: '/ussd',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -162,60 +162,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/ussd': {
-      id: '/ussd'
-      path: '/ussd'
-      fullPath: '/ussd'
-      preLoaderRoute: typeof UssdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/profile-setup': {
-      id: '/profile-setup'
-      path: '/profile-setup'
-      fullPath: '/profile-setup'
-      preLoaderRoute: typeof ProfileSetupRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/my-dashboard': {
-      id: '/my-dashboard'
-      path: '/my-dashboard'
-      fullPath: '/my-dashboard'
-      preLoaderRoute: typeof MyDashboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/my-cooperative': {
-      id: '/my-cooperative'
-      path: '/my-cooperative'
-      fullPath: '/my-cooperative'
-      preLoaderRoute: typeof MyCooperativeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/crop-doctor': {
-      id: '/crop-doctor'
-      path: '/crop-doctor'
-      fullPath: '/crop-doctor'
-      preLoaderRoute: typeof CropDoctorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/chat': {
-      id: '/chat'
-      path: '/chat'
-      fullPath: '/chat'
-      preLoaderRoute: typeof ChatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/analytics': {
@@ -225,11 +176,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chat': {
+      id: '/chat'
+      path: '/chat'
+      fullPath: '/chat'
+      preLoaderRoute: typeof ChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crop-doctor': {
+      id: '/crop-doctor'
+      path: '/crop-doctor'
+      fullPath: '/crop-doctor'
+      preLoaderRoute: typeof CropDoctorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-cooperative': {
+      id: '/my-cooperative'
+      path: '/my-cooperative'
+      fullPath: '/my-cooperative'
+      preLoaderRoute: typeof MyCooperativeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-dashboard': {
+      id: '/my-dashboard'
+      path: '/my-dashboard'
+      fullPath: '/my-dashboard'
+      preLoaderRoute: typeof MyDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile-setup': {
+      id: '/profile-setup'
+      path: '/profile-setup'
+      fullPath: '/profile-setup'
+      preLoaderRoute: typeof ProfileSetupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ussd': {
+      id: '/ussd'
+      path: '/ussd'
+      fullPath: '/ussd'
+      preLoaderRoute: typeof UssdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
