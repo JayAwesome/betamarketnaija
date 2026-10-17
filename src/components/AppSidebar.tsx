@@ -5,10 +5,11 @@ import {
   SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { useT } from "@/lib/i18n";
+import { phoneDemoCopy } from "@/lib/phone-demo";
 
 export function AppSidebar() {
   const currentPath = useRouterState({ select: (r) => r.location.pathname });
-  const { t } = useT();
+  const { t, lang } = useT();
 
   const items = [
     { key: "nav.dashboard", url: "/", icon: LayoutDashboard },
@@ -44,7 +45,7 @@ export function AppSidebar() {
                   <SidebarMenuButton asChild isActive={currentPath === item.url}>
                     <Link to={item.url} className="flex items-center gap-2">
                       <item.icon className="h-4 w-4" />
-                      <span>{t(item.key)}</span>
+                      <span>{item.url === "/ussd" ? phoneDemoCopy[lang].title : t(item.key)}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>

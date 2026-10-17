@@ -27,6 +27,8 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Market Dashboard — AgriSense AI" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "description", content: "Compare crop prices across 19 Nigerian cities and get AI-powered selling recommendations grounded in weekly trend data." },
       { property: "og:title", content: "Market Dashboard — AgriSense AI" },
       { property: "og:description", content: "Compare crop prices across 19 Nigerian cities and get AI-powered selling recommendations grounded in weekly trend data." },
