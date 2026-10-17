@@ -2,13 +2,18 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Smartphone, Info } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { PhoneAlertDemo } from "@/components/PhoneAlertDemo";
+import { useT } from "@/lib/i18n";
+import { phoneDemoCopy } from "@/lib/phone-demo";
 
 export const Route = createFileRoute("/ussd")({
   head: () => ({
     meta: [
-      { title: "USSD & SMS Demo — AgriSense AI" },
+      { title: "Phone, PPR & USSD Demo — AgriSense AI" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "description", content: "Concept mockup showing how AgriSense AI could reach farmers without smartphones via USSD shortcodes and SMS." },
-      { property: "og:title", content: "USSD & SMS Access — AgriSense AI" },
+      { property: "og:title", content: "Phone & PPR Demo — AgriSense AI" },
       { property: "og:description", content: "Conceptual mockup of USSD shortcode and SMS delivery for farmers without smartphones or reliable data." },
       { property: "og:url", content: "https://betamarketnaija.lovable.app/ussd" },
       { name: "twitter:title", content: "USSD & SMS Access — AgriSense AI" },
@@ -20,12 +25,18 @@ export const Route = createFileRoute("/ussd")({
 });
 
 function UssdPage() {
+  const { lang } = useT();
   return (
     <div className="mx-auto max-w-5xl space-y-6 p-4 md:p-8">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">USSD & SMS Demo</h1>
-        <p className="text-muted-foreground">Reach farmers who don't have smartphones or reliable data.</p>
+        <h1 className="text-3xl font-bold">{phoneDemoCopy[lang].title}</h1>
       </div>
+
+      <PhoneAlertDemo />
+
+      <details className="border-t pt-6">
+      <summary className="cursor-pointer font-semibold">USSD & SMS</summary>
+      <div className="mt-6 space-y-6">
 
       <Card className="border-warning/50 bg-warning/5">
         <CardContent className="flex items-start gap-3 p-4 text-sm">
@@ -96,6 +107,8 @@ Reply: 1`}
           </Card>
         </div>
       </div>
+      </div>
+      </details>
     </div>
   );
 }

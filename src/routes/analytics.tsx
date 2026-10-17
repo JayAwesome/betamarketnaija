@@ -12,6 +12,8 @@ export const Route = createFileRoute("/analytics")({
   head: () => ({
     meta: [
       { title: "Price Analytics — AgriSense AI" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "description", content: "4-week price trends, seasonal insights and volatility index for major Nigerian crops." },
       { property: "og:title", content: "Price Analytics — AgriSense AI" },
       { property: "og:description", content: "See 4-week price trends, volatility bands, and directional market signals for Nigerian crops." },

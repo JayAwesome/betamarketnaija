@@ -1,4 +1,5 @@
 # Roadmap
 
-- [ ] Integrate real telephone IVR — awaiting a linked telephone service and callable number.
-- [ ] Integrate the user's PPR alert engine — awaiting its Google Cloud Run URL and API documentation describing alerts and authentication.
+- [x] Add a browser-only telephone menu demo with spoken sample replies and text fallback when browser audio is unavailable.
+- [x] Add a simulated PPR event and alert inbox; no external service calls.
+- [x] Verify both demo flows and mobile layout.

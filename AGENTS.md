@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep telephone/PPR demonstrations in a browser-only feature module with pure event filtering; this prevents demo actions from contacting paid services or writing production alerts.
