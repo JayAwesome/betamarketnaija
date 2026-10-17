@@ -25,6 +25,8 @@ export const Route = createFileRoute("/my-dashboard")({
   head: () => ({
     meta: [
       { title: "My Dashboard — AgriSense AI" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "description", content: "Your personalized farmer dashboard: produce inventory, sales tracker, profit summary, and personalized recommendations." },
       { property: "og:title", content: "My Farmer Dashboard — AgriSense AI" },
       { property: "og:description", content: "Track produce inventory, record sales, and compare your realized price against AgriSense recommendations." },

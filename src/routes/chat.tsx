@@ -17,6 +17,8 @@ export const Route = createFileRoute("/chat")({
   head: () => ({
     meta: [
       { title: "AI Assistant — AgriSense AI" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "description", content: "Ask the AgriSense AI assistant where to sell your crops for the best price." },
       { property: "og:title", content: "AI Assistant — AgriSense AI" },
       { property: "og:description", content: "Chat with an AI grounded in Nigerian market data to decide where and when to sell your crops." },

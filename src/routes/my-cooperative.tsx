@@ -18,6 +18,8 @@ export const Route = createFileRoute("/my-cooperative")({
   head: () => ({
     meta: [
       { title: "My Cooperative — AgriSense AI" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "description", content: "Pool produce with other farmers and unlock buyer premiums that individual smallholders can't reach." },
       { property: "og:title", content: "Cooperative Pooling — AgriSense AI" },
       { property: "og:description", content: "Join or create a farming cooperative to aggregate produce and unlock group-level buyer recommendations." },

@@ -17,6 +17,10 @@ export const Route = createFileRoute("/profile-setup")({
   head: () => ({
     meta: [
       { title: "Complete Your Profile — AgriSense AI" },
+      { property: "og:title", content: "Complete Your Profile — AgriSense AI" },
+      { property: "og:description", content: "Set up your AgriSense AI farmer profile: name, city and primary crop." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "description", content: "Set up your AgriSense AI farmer profile: name, city and primary crop." },
       { name: "robots", content: "noindex" },
     ],

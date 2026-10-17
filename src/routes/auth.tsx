@@ -14,6 +14,8 @@ export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
       { title: "Sign In — AgriSense AI" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "description", content: "Sign in to your AgriSense AI farmer dashboard." },
       { property: "og:title", content: "Sign in — AgriSense AI" },
       { property: "og:description", content: "Sign in or create a free AgriSense AI account to track produce, sales and cooperative pooling." },

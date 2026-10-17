@@ -50,7 +50,7 @@ export function PhoneAlertDemo() {
     synthesis.speak(utterance);
   }
 
-  function end() { window.speechSynthesis?.cancel(); setActive(false); setReply(""); }
+  function end() { window.speechSynthesis?.cancel(); setActive(false); setReply(""); setAudioUnavailable(false); }
   function simulate() {
     const event: DemoEvent = { id: ++nextId.current, crop, city, message: message.trim() || copy.sample };
     setInbox(previous => deliverDemoEvent(enabled, crop, city, event, previous));
